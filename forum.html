@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Форум (Чат) - Дисненская СШ</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        // Применяем тему сразу, без моргания
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark');
+            }
+        })();
+    </script>
+</head>
+<body>
+    <!-- ---------- Верхняя панель ---------- -->
+    <header class="top-bar">
+        <div class="container">
+            <span class="site-title">НЕ официальный сайт Дисненской средней школы</span>
+            <div class="top-bar-right">
+                <a href="profile.html" class="top-bar-avatar" id="top-bar-avatar" title="Мой профиль">
+                    <div class="avatar-small" id="top-bar-avatar-img"></div>
+                </a>
+                <button id="menu-toggle" class="menu-toggle" aria-label="Открыть меню">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ---------- Выдвижная панель (сайдбар) ---------- -->
+    <aside id="drawer" class="drawer">
+        <button class="drawer-close" id="drawer-close" aria-label="Закрыть меню">&times;</button>
+        <nav class="drawer-nav">
+            <a href="index.html" class="drawer-link">Главная</a>
+            <a href="forum.html" class="drawer-link">Форум</a>
+            <a href="pride.html" class="drawer-link">Гордость</a>
+            <a href="news.html" class="drawer-link">Новости</a>
+            <a href="profile.html" class="drawer-link">Профиль</a>
+        </nav>
+        <div class="drawer-footer">
+            <button id="theme-toggle-drawer" class="theme-toggle" aria-label="Переключить тему">
+                <span class="theme-icon">☾</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- ---------- Основное содержимое ---------- -->
+    <main class="container">
+        <section class="chat-section">
+            <h1>Форум школы</h1>
+            <p style="text-align: center; color: #666; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Общайтесь, делитесь новостями. Здесь можно отправлять сообщения, отвечать и ставить реакции.
+            </p>
+
+            <!-- Основной чат интерфейс -->
+            <div id="chat-container" class="chat-container">
+                <!-- Блок участников -->
+                <div class="chat-sidebar">
+                    <h3>Участники</h3>
+                    <div id="participants-list" class="participants-list">
+                        <!-- Участники будут загружаться динамически -->
+                    </div>
+                </div>
+
+                <!-- Основное окно чата -->
+                <div class="chat-main">
+                    <!-- Заголовок чата -->
+                    <div class="chat-header">
+                        <div class="chat-header-info">
+                            <h2>Общий чат</h2>
+                            <span class="chat-subtitle">Всеобщее общение</span>
+                        </div>
+                        <div class="chat-header-stats">
+                            <span id="online-count" class="online-count">0 онлайн</span>
+                        </div>
+                    </div>
+
+                    <!-- Сообщения -->
+                    <div id="messages-container" class="messages-container">
+                        <!-- Сообщения будут загружаться динамически -->
+                    </div>
+
+                    <!-- Форма отправки сообщения -->
+                    <div class="chat-input-area">
+                        <div class="current-user-info">
+                            <div id="current-user-avatar" class="current-user-avatar"></div>
+                            <span id="current-user-name" class="current-user-name"></span>
+                        </div>
+                        <div class="message-input-wrapper">
+                            <textarea
+                                id="message-input"
+                                class="message-input"
+                                placeholder="Введите сообщение... (Shift+Enter для новой строки)"
+                                rows="1"
+                                maxlength="1000"
+                            ></textarea>
+                            <button id="send-button" class="btn btn-primary">
+                                <span class="send-icon">➤</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ---------- Модальное окно профиля пользователя ---------- -->
+    <div id="user-profile-modal" class="user-profile-modal hidden">
+        <div class="user-profile-content">
+            <button class="close-profile-btn" onclick="closeUserProfileModal()">&times;</button>
+            <div class="profile-modal-header">
+                <div id="modal-user-avatar" class="modal-user-avatar"></div>
+                <div class="modal-user-info">
+                    <h3 id="modal-user-nickname"></h3>
+                    <p id="modal-user-uid" class="modal-user-uid"></p>
+                </div>
+            </div>
+            <div class="profile-modal-body">
+                <div class="profile-modal-field">
+                    <label>Email:</label>
+                    <span id="modal-user-email"></span>
+                </div>
+                <div class="profile-modal-field">
+                    <label>О себе:</label>
+                    <p id="modal-user-bio"></p>
+                </div>
+                <div class="profile-modal-field">
+                    <label>Дата создания профиля:</label>
+                    <span id="modal-user-created"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ---------- Подвал ---------- -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 Дисненская средняя школа. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

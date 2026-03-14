@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Гордость школы - Дисненская СШ</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        // Применяем тему сразу, без моргания
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark');
+            }
+        })();
+    </script>
+</head>
+<body>
+    <!-- ---------- Верхняя панель ---------- -->
+    <header class="top-bar">
+        <div class="container">
+            <span class="site-title">НЕ официальный сайт Дисненской средней школы</span>
+            <div class="top-bar-right">
+                <a href="profile.html" class="top-bar-avatar" id="top-bar-avatar" title="Мой профиль">
+                    <div class="avatar-small" id="top-bar-avatar-img"></div>
+                </a>
+                <button id="menu-toggle" class="menu-toggle" aria-label="Открыть меню">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ---------- Выдвижная панель (сайдбар) ---------- -->
+    <aside id="drawer" class="drawer">
+        <button class="drawer-close" id="drawer-close" aria-label="Закрыть меню">&times;</button>
+        <nav class="drawer-nav">
+            <a href="index.html" class="drawer-link">Главная</a>
+            <a href="forum.html" class="drawer-link">Форум</a>
+            <a href="pride.html" class="drawer-link">Гордость</a>
+            <a href="news.html" class="drawer-link">Новости</a>
+            <a href="profile.html" class="drawer-link">Профиль</a>
+        </nav>
+        <div class="drawer-footer">
+            <button id="theme-toggle-drawer" class="theme-toggle" aria-label="Переключить тему">
+                <span class="theme-icon">☾</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- ---------- Основное содержимое ---------- -->
+    <main class="container">
+        <section class="hero">
+            <h1>Гордость школы</h1>
+            <p>Знакомьтесь с нашими легендами школы.</p>
+        </section>
+
+        <section class="pride">
+            <div class="cards-grid">
+                <div class="card" data-person="teacher-1">
+                    <div class="card-image">
+                        <img src="https://i.ibb.co/v6H0q66H/photo-2026-03-14-12-46-39.jpg" alt="Илья Высоцкий" loading="lazy">
+                    </div>
+                    <div class="card-content">
+                        <h3>Илья Высоцкий</h3>
+                        <p class="role">Ученик 9 класса</p>
+                        <p class="description">Создатель официального аккаунта Дисненской школы.</p>
+                        <button class="btn-card">Подробнее</button>
+                    </div>
+                </div>
+                
+                <div class="card" data-person="student-1">
+                    <div class="card-image">
+                        <img src="https://picsum.photos/seed/student1/300/200.jpg" alt="Мария Ковальчук" loading="lazy">
+                    </div>
+                    <div class="card-content">
+                        <h3>Пусто</h3>
+                        <p class="role">Кто то</p>
+                        <p class="description">Возможно, тут будешь ты.</p>
+                        <button class="btn-card">Подробнее</button>
+                    </div>
+                </div>
+                
+                <div class="card" data-person="student-2">
+                    <div class="card-image">
+                        <img src="https://picsum.photos/seed/student2/300/200.jpg" alt="Александр Петров" loading="lazy">
+                    </div>
+                    <div class="card-content">
+                        <h3>Пусто</h3>
+                        <p class="role">Кто то</p>
+                        <p class="description">Возможно, тут будешь ты.</p>
+                        <button class="btn-card">Подробнее</button>
+                    </div>
+                </div>
+                
+                <div class="card" data-person="teacher-2">
+                    <div class="card-image">
+                        <img src="https://picsum.photos/seed/teacher2/300/200.jpg" alt="Елена Смирнова" loading="lazy">
+                    </div>
+                    <div class="card-content">
+                        <h3>Пусто</h3>
+                        <p class="role">Кто то</p>
+                        <p class="description">Возможно, тут будешь ты.</p>
+                        <button class="btn-card">Подробнее</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ---------- Подвал ---------- -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 Дисненская средняя школа. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

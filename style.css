@@ -1,0 +1,3725 @@
+/* ==== Общий сброс и базовые стили ==== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px; /* 1rem = 16px */
+    overflow-y: scroll;
+    scrollbar-gutter: stable;
+    background: #f5f7fa;
+    color: #333;
+    transition: background 0.4s ease, color 0.4s ease;
+    scroll-behavior: smooth;
+}
+
+html.dark {
+    background: #0f0f1e;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Анимированный фон с частицами (декоративный) */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        radial-gradient(circle at 20% 50%, rgba(0, 102, 204, 0.12) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(0, 102, 204, 0.12) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(0, 102, 204, 0.12) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+html.dark body::before {
+    background-image:
+        radial-gradient(circle at 20% 50%, rgba(77, 166, 255, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(77, 166, 255, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(77, 166, 255, 0.08) 0%, transparent 50%);
+}
+
+main.container {
+    flex: 1;
+}
+
+/* ==== Контейнер для центрирования ==== */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Основной контейнер страницы */
+main.container {
+    background: rgba(255, 255, 255, 0.85);
+    padding: 1rem;
+    border-radius: 16px;
+    margin: 1rem auto;
+    box-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.05),
+        0 4px 8px rgba(0, 0, 0, 0.08);
+    transition: box-shadow 0.2s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    will-change: transform;
+    contain: layout style;
+}
+
+html.dark main.container {
+    background: rgba(42, 42, 42, 0.85);
+    box-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.2),
+        0 4px 8px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+main.container:hover {
+    box-shadow:
+        0 4px 6px rgba(0, 0, 0, 0.08),
+        0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+html.dark main.container:hover {
+    box-shadow:
+        0 4px 6px rgba(0, 0, 0, 0.3),
+        0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* ==== Верхняя панель ==== */
+.top-bar {
+    background: linear-gradient(135deg, #004080, #004080); /* Темно‑синий градиент */
+    color: #fff;
+    padding: 1rem 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Top bar stays the same in dark mode */
+.dark .top-bar {
+    background: linear-gradient(135deg, #004080, #004080);
+}
+
+.top-bar .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.site-title {
+    font-size: 1.125rem; /* 18px */
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: color 0.4s ease;
+}
+
+.top-bar-right {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.top-bar-avatar {
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.top-bar-avatar:hover {
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.avatar-small {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.avatar-small img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.avatar-small .no-avatar {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+    color: #666;
+    font-size: 1.25rem;
+    font-weight: 300;
+}
+
+html.dark .top-bar-avatar {
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+html.dark .avatar-small {
+    background: rgba(60, 60, 60, 0.9);
+}
+
+html.dark .avatar-small .no-avatar {
+    background: linear-gradient(135deg, #3a3a3a, #2a2a2a);
+    color: #aaa;
+}
+
+/* ==== Кнопка-гамбургер для открытия меню ==== */
+.menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 24px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+    margin-right: 1rem;
+}
+
+.hamburger-line {
+    width: 100%;
+    height: 3px;
+    background-color: #fff;
+    border-radius: 2px;
+    transition: background-color 0.2s ease;
+}
+
+/* Убрана анимация превращения гамбургера в крестик */
+
+/* ==== Выдвижная панель (сайдбар) ==== */
+.drawer {
+    position: fixed;
+    top: 0;
+    right: -280px; /* Скрыта за экраном */
+    width: 280px;
+    height: 100vh;
+    background: #fff;
+    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.15);
+    z-index: 2000;
+    transition: right 0.3s ease-in-out;
+    padding-top: 60px; /* Отступ от верхней панели */
+    display: flex;
+    flex-direction: column;
+}
+
+.drawer.open {
+    right: 0; /* Показываем панель */
+}
+
+/* Кнопка закрытия сайдбара */
+.drawer-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    left: auto;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #666;
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    z-index: 10;
+}
+
+.drawer-close:hover {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+html.dark .drawer-close {
+    color: #aaa;
+}
+
+html.dark .drawer-close:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+/* Темная тема для панели */
+html.dark .drawer {
+    background: #2a2a2a;
+    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.4);
+}
+
+.drawer-nav {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+    flex: 1; /* Занимает доступное пространство */
+}
+
+.drawer-footer {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: center;
+}
+
+html.dark .drawer-footer {
+    border-top-color: #3a3a3a;
+}
+
+.drawer-link {
+    display: block;
+    padding: 1rem 1.5rem;
+    color: #004080;
+    text-decoration: none;
+    font-size: 1.125rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+    border-left: 4px solid transparent;
+}
+
+html.dark .drawer-link {
+    color: #e0e0e0;
+}
+
+.drawer-link:hover {
+    background-color: #f0f0f0;
+    border-left-color: #0066cc;
+}
+
+html.dark .drawer-link {
+    color: #e0e0e0;
+}
+
+html.dark .drawer-link:hover {
+    background-color: #333;
+}
+
+/* Затемнение фона при открытом меню */
+.drawer-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1500;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.drawer-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ==== Кнопка переключения темы ==== */
+.theme-toggle {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    padding: 0;
+    font-size: 18px;
+    border: 2px solid #004080;
+    background: #fff;
+    color: #004080;
+}
+
+.theme-toggle:hover {
+    background: #e6f0ff;
+    transform: scale(1.02);
+}
+
+html.dark .theme-toggle {
+    border-color: #004080;
+    background: #2a2a2a;
+    color: #e0e0e0;
+}
+
+html.dark .theme-toggle:hover {
+    background: #333;
+}
+
+/* ==== Кнопка для темной/светлой темы ==== */
+.theme-icon {
+    color: #888; /* Более нейтральный серый для иконок */
+}
+
+.top-bar {
+    background: linear-gradient(135deg, #004080, #004080);
+}
+
+
+.site-title {
+    color: #fff;
+}
+
+html.dark .site-title {
+    color: #e0e0e0;
+}
+
+/* Стили для темной темы */
+html.dark {
+    background-color: #1a1a1a; /* Тёмный фон */
+    color: #f0f0f0; /* Светлый текст */
+}
+
+html.dark .hero,
+html.dark .pride,
+html.dark .news {
+    background: #2a2a2a; /* Немного светлее для плавности */
+    color: #e8e8e8;
+}
+
+html.dark .hero h1,
+html.dark .pride h2,
+html.dark .news h2,
+html.dark .card-content h3 {
+    color: #f0f0f0;
+}
+
+html.dark .hero p,
+html.dark .description,
+html.dark .modal-body p,
+html.dark .news-item p {
+    color: #c0c0c0;
+}
+
+html.dark .card {
+    background: #2a2a2a; /* Согласовано с другими элементами */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+html.dark .card-content .role {
+    color: #e0e0e0;
+}
+
+html.dark .modal-content {
+    background: #2a2a2a;
+}
+
+html.dark .modal-header {
+    border-bottom: 1px solid #3a3a3a;
+}
+
+html.dark .modal-header h3 {
+    color: #e0e0e0;
+}
+
+html.dark .close-btn {
+    background: #2a2a2a;
+    border: 1px solid #3a3a3a;
+    color: #b0b0b0;
+}
+
+html.dark .close-btn:hover {
+    background: #333;
+    color: #e0e0e0;
+}
+
+html.dark .news-item {
+    background: #2a2a2a;
+    border-left: 4px solid #0066cc;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+html.dark .news-item h3 {
+    color: #e0e0e0;
+}
+
+/* Если захотите добавить иконки справа — они будут выравниваться автоматически */
+.top-bar .social-icons {
+    display: flex;
+    gap: 1rem;
+}
+.top-bar .social-icons a {
+    color: #fff;
+    font-size: 1.25rem;
+    transition: color 0.2s;
+}
+.top-bar .social-icons a:hover {
+    color: #ffdd57;
+}
+
+/* ==== Геро‑секция ==== */
+.hero {
+    text-align: center;
+    padding: 5rem 0 3rem;
+    background: #fff;
+    border-radius: 20px;
+    margin: 2rem auto;
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.2s ease;
+    contain: layout style;
+}
+
+html.dark .hero {
+    background: #2a2a2a;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0, 102, 204, 0.12) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-decoration {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.decoration-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(0, 102, 204, 0.25), rgba(0, 102, 204, 0.15));
+}
+
+.circle-1 {
+    width: 80px;
+    height: 80px;
+    top: 10%;
+    left: 10%;
+}
+
+.circle-2 {
+    width: 120px;
+    height: 120px;
+    top: 60%;
+    right: 15%;
+}
+
+.circle-3 {
+    width: 60px;
+    height: 60px;
+    bottom: 20%;
+    left: 20%;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    color: #004080;
+    position: relative;
+    z-index: 1;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+html.dark .hero h1 {
+    color: #4da6ff;
+    text-shadow: 0 2px 8px rgba(77, 166, 255, 0.3);
+}
+
+.hero p {
+    font-size: 1.25rem;
+    margin-bottom: 2.5rem;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #555;
+    position: relative;
+    z-index: 1;
+    line-height: 1.7;
+}
+
+html.dark .hero p {
+    color: #c0c0c0;
+}
+
+.hero .btn-primary {
+    position: relative;
+    z-index: 1;
+    padding: 1rem 2.5rem;
+    font-size: 1.125rem;
+    border-radius: 50px;
+    background: linear-gradient(135deg, #0066cc 0%, #004080 100%);
+    box-shadow: 0 4px 15px rgba(0, 102, 204, 0.4);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hero .btn-primary:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 102, 204, 0.5);
+}
+
+/* Базовый стиль кнопок */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.3s, transform 0.2s, opacity 0.3s;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1rem;
+    text-align: center;
+    line-height: 1.2;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    font-family: inherit;
+    font-size: 1rem;
+    text-align: center;
+    line-height: 1.2;
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+        0 2px 4px rgba(0, 102, 204, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn-primary:hover::before {
+    left: 100%;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #0077ee 0%, #0066cc 100%);
+    transform: translateY(-2px);
+    box-shadow:
+        0 4px 8px rgba(0, 102, 204, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+    box-shadow:
+        0 1px 2px rgba(0, 102, 204, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #6c757d 0%, #545b62 100%);
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    font-family: inherit;
+    font-size: 1rem;
+    text-align: center;
+    line-height: 1.2;
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+        0 2px 4px rgba(108, 117, 125, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.btn-secondary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn-secondary:hover::before {
+    left: 100%;
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(135deg, #7d858a 0%, #6c757d 100%);
+    transform: translateY(-2px);
+    box-shadow:
+        0 4px 8px rgba(108, 117, 125, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.btn-secondary:active {
+    transform: translateY(0);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    font-family: inherit;
+    font-size: 1rem;
+    text-align: center;
+    line-height: 1.2;
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+        0 2px 4px rgba(220, 53, 69, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.btn-danger::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn-danger:hover::before {
+    left: 100%;
+}
+
+.btn-danger:hover {
+    background: linear-gradient(135deg, #e4606d 0%, #dc3545 100%);
+    transform: translateY(-2px);
+    box-shadow:
+        0 4px 8px rgba(220, 53, 69, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.btn-danger:active {
+    transform: translateY(0);
+}
+
+/* Темная тема для кнопок */
+html.dark .btn-primary {
+    background: #0066cc;
+}
+
+html.dark .btn-primary:hover {
+    background: #004080;
+}
+
+
+
+/* ==== Раздел Гордость школы ==== */
+.pride {
+    padding: 3rem 0;
+    background: #fff;
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+.pride h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #004080;
+    font-size: 1.875rem;
+}
+
+html.dark .pride h2 {
+    color: #e0e0e0;
+}
+
+/* ==== Карточки ==== */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.05),
+        0 4px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    cursor: pointer;
+    max-width: 400px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    contain: layout style;
+    will-change: transform;
+}
+
+html.dark .card {
+    background: rgba(42, 42, 42, 0.9);
+    box-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.2),
+        0 4px 8px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        0 4px 8px rgba(0, 0, 0, 0.08),
+        0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+html.dark .card:hover {
+    box-shadow:
+        0 4px 8px rgba(0, 0, 0, 0.3),
+        0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+    transition: left 0.4s ease;
+}
+
+.card:hover::after {
+    left: 100%;
+}
+
+html.dark .card::after {
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.03), transparent);
+}
+
+.card-image {
+    height: 220px;
+    overflow: hidden;
+    position: relative;
+}
+
+.card-image::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.3), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card:hover .card-image::after {
+    opacity: 1;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.card:hover .card-image img {
+    transform: scale(1.05);
+}
+
+.card-content {
+    padding: 1.5rem;
+    position: relative;
+}
+
+.card-content h3 {
+    margin-bottom: 0.75rem;
+    color: #004080;
+    font-size: 1.375rem;
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+html.dark .card-content h3 {
+    color: #4da6ff;
+}
+
+.card:hover .card-content h3 {
+    color: #0066cc;
+}
+
+html.dark .card:hover .card-content h3 {
+    color: #66b3ff;
+}
+
+.role {
+    color: #0066cc;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: transform 0.2s ease;
+}
+
+html.dark .role {
+    color: #4da6ff;
+}
+
+.card:hover .role {
+    transform: translateX(5px);
+}
+
+.description {
+    color: #555;
+    margin-bottom: 1.25rem;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+html.dark .description {
+    color: #bbb;
+}
+
+.btn-card {
+    background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
+    color: #fff;
+    border: none;
+    padding: 0.625rem 1.25rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    font-size: 0.9rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 102, 204, 0.2);
+}
+
+.btn-card:hover {
+    background: linear-gradient(135deg, #0077ee 0%, #0066cc 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 3px 6px rgba(0, 102, 204, 0.25);
+}
+
+.btn-card:active {
+    transform: translateY(0);
+}
+
+/* Центрирование карточек в разделе Гордость */
+.pride .cards-grid {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.role {
+    color: #0066cc;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+html.dark .role {
+    color: #e0e0e0;
+}
+
+.description {
+    color: #555;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.btn-card {
+    background: #0066cc;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-card:hover {
+    background: #004080;
+}
+
+/* ==== Модальное окно ==== */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    box-sizing: border-box;
+    opacity: 0;
+    animation: fadeIn 0.3s ease forwards;
+}
+
+.modal-content {
+    background: #fff;
+    border-radius: 12px;
+    max-width: 600px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    transition: background-color 0.4s ease, transform 0.3s ease, opacity 0.3s ease;
+    transform: scale(0.9);
+    opacity: 0;
+}
+
+.modal.show .modal-content {
+    transform: scale(1);
+    opacity: 1;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid #eee;
+    position: relative;
+}
+
+.modal-header h3 {
+    color: #004080;
+    margin-bottom: 0.5rem;
+}
+
+html.dark .modal-header h3 {
+    color: #e0e0e0;
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+.modal-body img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.modal-body p {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.close-btn {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: #fff;
+    border: 1px solid #c5c5c5;
+    color: #575757;
+    padding: 0.4rem 0.7rem;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    margin-top: 0;
+}
+
+.close-btn:hover {
+    background: #f9f9f9;
+    color: #004080;
+}
+
+html.dark .close-btn:hover {
+    color: #e0e0e0;
+}
+
+/* ==== Новости (если понадобится) ==== */
+.news {
+    padding: 3rem 0;
+    background: #fafafa;
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+.news h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #004080;
+    font-size: 1.875rem;
+}
+
+html.dark .news h2 {
+    color: #e0e0e0;
+}
+
+.news-item {
+    background: rgba(255, 255, 255, 0.85);
+    border-left: 4px solid #0066cc;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    border-radius: 0 12px 12px 0;
+    box-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.05),
+        0 4px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    contain: layout style;
+}
+
+html.dark .news-item {
+    background: rgba(42, 42, 42, 0.85);
+    border-left-color: #4da6ff;
+    box-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.2),
+        0 4px 8px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.news-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 102, 204, 0.05), transparent);
+    transition: left 0.6s ease;
+}
+
+.news-item:hover::before {
+    left: 100%;
+}
+
+.news-item:hover {
+    transform: translateX(2px);
+    box-shadow:
+        0 4px 8px rgba(0, 0, 0, 0.08),
+        0 8px 16px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+html.dark .news-item:hover {
+    box-shadow:
+        0 4px 8px rgba(0, 0, 0, 0.4),
+        0 12px 24px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.news-item h3 {
+    margin-bottom: 0.75rem;
+    font-size: 1.375rem;
+    color: #004080;
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+html.dark .news-item h3 {
+    color: #4da6ff;
+}
+
+.news-item:hover h3 {
+    color: #0066cc;
+}
+
+html.dark .news-item:hover h3 {
+    color: #66b3ff;
+}
+
+.news-item p {
+    margin-bottom: 1.25rem;
+    color: #555;
+    line-height: 1.7;
+    font-size: 0.95rem;
+}
+
+html.dark .news-item p {
+    color: #bbb;
+}
+
+.btn-link {
+    color: #0066cc;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    transition: color 0.2s ease;
+    position: relative;
+}
+
+.btn-link::after {
+    content: '→';
+    transition: transform 0.3s ease;
+}
+
+.btn-link:hover::after {
+    transform: translateX(3px);
+}
+
+.btn-link:hover {
+    color: #004080;
+    text-decoration: none;
+}
+
+html.dark .btn-link {
+    color: #4da6ff;
+}
+
+html.dark .btn-link:hover {
+    color: #66b3ff;
+}
+
+.btn-link {
+    color: #0066cc;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.btn-link:hover {
+    text-decoration: underline;
+}
+
+html.dark .btn-link {
+    color: #e0e0e0;
+}
+
+/* ==== Секция Новости ==== */
+.news-list {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.news-item {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: #fff;
+    border-left: 4px solid #0066cc;
+    border-radius: 0 4px 4px 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    transition: background-color 0.4s ease, color 0.4s ease, border-left-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.news-item h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+    color: #004080;
+}
+
+.news-item p {
+    margin-bottom: 1rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+.news-item .btn-link {
+    color: #0066cc;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.news-item .btn-link:hover {
+    text-decoration: underline;
+}
+
+html.dark .news-item {
+    background: #2a2a2a;
+    border-left-color: #e0e0e0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+html.dark .news-item h3 {
+    color: #e0e0e0;
+}
+
+html.dark .news-item p {
+    color: #b0b0b0;
+}
+
+html.dark .news-item .btn-link {
+    color: #e0e0e0;
+}
+
+/* ==== Секция Форум ==== */
+.forum {
+    padding: 3rem 0;
+    background: #fff;
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+.forum h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #004080;
+    font-size: 1.875rem;
+}
+
+html.dark .forum h2 {
+    color: #e0e0e0;
+}
+
+.forum p {
+    text-align: center;
+    color: #555;
+    font-size: 1.125rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+html.dark .forum {
+    background: #2a2a2a;
+}
+
+html.dark .forum h2 {
+    color: #e0e0e0;
+}
+
+html.dark .forum p {
+    color: #c0c0c0;
+}
+
+/* ==== Приветствие ==== */
+.greeting {
+    text-align: center;
+    padding: 0.5rem 0;
+    margin: 0 0 4px 0; /* 4px отступ снизу от футера - чуть выше */
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+.greeting p {
+    font-size: 0.875rem; /* Меньший размер текста */
+    color: #004080;
+    font-weight: 500;
+}
+
+html.dark .greeting p {
+    color: #e0e0e0;
+}
+
+html.dark .greeting p {
+    color: #e0e0e0;
+}
+
+/* ==== Подвал ==== */
+.site-footer {
+    background: linear-gradient(135deg, #004080 0%, #003366 100%);
+    color: #fff;
+    text-align: center;
+    padding: 2rem 0;
+    font-size: 0.875rem;
+    margin-top: auto;
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+        0 -4px 12px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.site-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.3) 20%,
+        rgba(255, 255, 255, 0.5) 50%,
+        rgba(255, 255, 255, 0.3) 80%,
+        transparent 100%);
+}
+
+.site-footer p {
+    position: relative;
+    z-index: 1;
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+}
+
+.site-footer:hover p {
+    opacity: 1;
+}
+
+/* Декоративные элементы в футере */
+.site-footer::after {
+    content: '★';
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.2);
+}
+
+/* ==== Адаптивность ==== */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 0 0.75rem;
+    }
+    
+    .top-bar .container {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+    
+    .hero {
+        padding: 3rem 0 2rem;
+        margin: 1rem auto;
+    }
+    
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+        padding: 0 1rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .hero-buttons .btn {
+        width: 100%;
+        max-width: 250px;
+    }
+    
+    .cards-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .profile-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 1.5rem;
+    }
+    
+    .avatar-preview {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .chat-container {
+        grid-template-columns: 1fr;
+        height: auto;
+        min-height: 500px;
+    }
+    
+    .chat-sidebar {
+        display: none;
+    }
+    
+    .message {
+        max-width: 95%;
+    }
+    
+    .modal-content {
+        max-width: 95%;
+        margin: 0 1rem;
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 1.75rem;
+    }
+    
+    .hero p {
+        font-size: 0.9rem;
+    }
+    
+    .profile-header h1 {
+        font-size: 1.75rem;
+    }
+    
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group textarea {
+        padding: 0.75rem 1rem;
+        font-size: 0.95rem;
+    }
+    
+    .btn-primary {
+        padding: 0.625rem 1.25rem;
+        font-size: 0.95rem;
+    }
+    
+    .chat-header h2 {
+        font-size: 1rem;
+    }
+    
+    .chat-subtitle {
+        display: none;
+    }
+    
+    .message-input-wrapper {
+        flex-direction: column;
+    }
+    
+    #send-button {
+        width: 100%;
+        margin-top: 0.5rem;
+    }
+}
+
+/* Улучшения доступности */
+:focus-visible {
+    outline: 3px solid #0066cc;
+    outline-offset: 2px;
+}
+
+html.dark :focus-visible {
+    outline-color: #4da6ff;
+}
+
+/* Снижение анимаций для пользователей с предпочтением */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Оптимизация для слабых устройств */
+@media (prefers-reduced-data: reduce), (prefers-reduced-transparency: reduce) {
+    /* Отключаем размытие и сложные эффекты */
+    *,
+    *::before,
+    *::after {
+        backdrop-filter: none !important;
+        filter: none !important;
+    }
+    
+    /* Упрощаем тени */
+    .card,
+    .news-item,
+    .message-bubble,
+    .modal-content,
+    .user-profile-content,
+    main.container,
+    .chat-container {
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+    }
+    
+    /* Отключаем сложные градиенты */
+    .hero,
+    .btn-primary,
+    .btn-secondary,
+    .btn-danger {
+        background: #0066cc !important;
+        background-image: none !important;
+    }
+    
+    html.dark .hero,
+    html.dark .btn-primary,
+    html.dark .btn-secondary,
+    html.dark .btn-danger {
+        background: #0066cc !important;
+    }
+    
+    /* Упрощаем анимации */
+    .card,
+    .card-image img,
+    .message-avatar,
+    .btn,
+    .drawer,
+    .modal {
+        transition: none !important;
+        animation: none !important;
+    }
+    
+    /* Отключаем декоративные элементы */
+    body::before,
+    .hero::before,
+    .card::after,
+    .news-item::before {
+        display: none !important;
+    }
+    
+    /* Упрощаем скроллбар */
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background: rgba(0, 102, 204, 0.3) !important;
+    }
+}
+
+/* Дополнительные оптимизации для мобильных устройств */
+@media (max-width: 768px) {
+    /* Уменьшаем использование box-shadow на мобильных */
+    .card,
+    .news-item,
+    .message-bubble {
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+    }
+    
+    /* Упрощаем градиенты */
+    .hero {
+        background: #fff;
+    }
+    
+    html.dark .hero {
+        background: #2a2a2a;
+    }
+    
+    /* Отключаем некоторые анимации на слабых мобильных */
+    .card:hover,
+    .news-item:hover,
+    .message-avatar:hover {
+        transform: none !important;
+    }
+}
+
+/* Плавная прокрутка для якорей */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Стили для скроллбара */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 102, 204, 0.4);
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 102, 204, 0.6);
+}
+
+html.dark ::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+    background: rgba(77, 166, 255, 0.4);
+}
+
+html.dark ::-webkit-scrollbar-thumb:hover {
+    background: rgba(77, 166, 255, 0.6);
+}
+
+/* Микро-взаимодействия для всех интерактивных элементов */
+a, button, .card, .news-item, .message-avatar {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Эффект нажатия для всех кнопок */
+button:active,
+.btn:active {
+    transform: scale(0.98);
+}
+
+/* Стили для placeholder */
+::placeholder {
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+:focus::placeholder {
+    opacity: 0.4;
+}
+
+/* ==== Страница профиля ==== */
+.profile-section {
+    padding: 1.5rem 0;
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.profile-header h1 {
+    font-size: 1.875rem;
+    margin-bottom: 0.4rem;
+    color: #004080;
+    font-weight: 700;
+}
+
+html.dark .profile-header h1 {
+    color: #4da6ff;
+}
+
+.profile-subtitle {
+    font-size: 1rem;
+    color: #666;
+    margin-top: 0.4rem;
+}
+
+html.dark .profile-subtitle {
+    color: #bbb;
+}
+
+
+/* Сообщение об успешном сохранении - компактное */
+.save-message {
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-weight: 500;
+    font-size: 0.9375rem;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.save-message.success {
+    background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    box-shadow: 0 4px 8px rgba(40, 167, 69, 0.1);
+}
+
+.save-message.error {
+    background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    box-shadow: 0 4px 8px rgba(220, 53, 69, 0.1);
+}
+
+.save-message.hidden {
+    display: none;
+}
+
+html.dark .save-message.success {
+    background: linear-gradient(135deg, #1e4620 0%, #2d6931 100%);
+    color: #a3d9a5;
+    border-color: #2d6931;
+    box-shadow: 0 4px 8px rgba(40, 167, 69, 0.2);
+}
+
+html.dark .save-message.error {
+    background: linear-gradient(135deg, #4a1e1e 0%, #6b2a2a 100%);
+    color: #f5a3a3;
+    border-color: #6b2a2a;
+    box-shadow: 0 4px 8px rgba(220, 53, 69, 0.2);
+}
+
+/* Стили для меток формы с иконками */
+.form-group label {
+    font-weight: 600;
+    color: #333;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    transition: color 0.2s ease;
+}
+
+html.dark .form-group label {
+    color: #e0e0e0;
+}
+
+.label-icon {
+    font-size: 1.1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.required {
+    color: #dc3545;
+    font-weight: 700;
+}
+
+.optional {
+    font-size: 0.85rem;
+    color: #666;
+    font-weight: 400;
+}
+
+html.dark .optional {
+    color: #aaa;
+}
+
+/* Счетчик символов */
+.char-count {
+    text-align: right;
+    font-size: 0.75rem;
+    color: #999;
+    margin-top: 0.25rem;
+    transition: color 0.2s ease;
+}
+
+.char-count.warning {
+    color: #ffc107;
+}
+
+.char-count.danger {
+    color: #dc3545;
+}
+
+html.dark .char-count {
+    color: #777;
+}
+
+html.dark .char-count.warning {
+    color: #ffc107;
+}
+
+html.dark .char-count.danger {
+    color: #ff6b6b;
+}
+
+/* Подсказки */
+.avatar-hint {
+    font-size: 0.75rem;
+    color: #999;
+    margin-top: 0.75rem;
+    text-align: center;
+}
+
+html.dark .avatar-hint {
+    color: #777;
+}
+
+/* Кнопки с иконками */
+.btn .save-icon,
+.btn .clear-icon,
+.btn .upload-icon,
+.btn .delete-icon {
+    margin-right: 0.25rem;
+    font-size: 1rem;
+}
+
+/* Стили для UID */
+.uid-display {
+    display: block;
+    padding: 0.875rem 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    background: rgba(245, 245, 245, 0.8);
+    color: #666;
+    font-family: 'Courier New', monospace;
+    font-size: 1rem;
+    cursor: default;
+    user-select: text;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+html.dark .uid-display {
+    background: rgba(50, 50, 50, 0.8);
+    border-color: #555;
+    color: #bbbbbb;
+}
+
+.uid-display:hover {
+    border-color: #0066cc;
+    background: rgba(240, 248, 255, 0.8);
+}
+
+html.dark .uid-display:hover {
+    border-color: #4da6ff;
+    background: rgba(30, 50, 80, 0.8);
+}
+
+.uid-display::selection {
+    background: rgba(0, 102, 204, 0.2);
+}
+
+html.dark .uid-display::selection {
+    background: rgba(77, 166, 255, 0.3);
+}
+
+/* Контейнер профиля - компактный */
+.profile-container {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 1.5rem;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow:
+        0 3px 6px rgba(0, 0, 0, 0.05),
+        0 8px 16px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    margin-bottom: 1.5rem;
+    transition: box-shadow 0.2s ease;
+}
+
+html.dark .profile-container {
+    background: rgba(42, 42, 42, 0.85);
+    box-shadow:
+        0 3px 6px rgba(0, 0, 0, 0.3),
+        0 8px 16px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.profile-container:hover {
+    box-shadow:
+        0 4px 8px rgba(0, 0, 0, 0.08),
+        0 12px 24px rgba(0, 0, 0, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+html.dark .profile-container:hover {
+    box-shadow:
+        0 4px 8px rgba(0, 0, 0, 0.4),
+        0 12px 24px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Секция аватара - компактная */
+.avatar-section {
+    text-align: center;
+    position: relative;
+}
+
+.avatar-preview {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 1rem;
+    border: 3px solid #004080;
+    background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow:
+        0 3px 6px rgba(0, 0, 0, 0.08),
+        inset 0 2px 4px rgba(255, 255, 255, 0.6);
+}
+
+html.dark .avatar-preview {
+    border-color: #0066cc;
+    background: linear-gradient(135deg, #333, #444);
+    box-shadow:
+        0 3px 6px rgba(0, 0, 0, 0.3),
+        inset 0 2px 4px rgba(255, 255, 255, 0.05);
+}
+
+.avatar-preview:hover {
+    transform: scale(1.02);
+    box-shadow:
+        0 4px 10px rgba(0, 0, 0, 0.12),
+        inset 0 2px 4px rgba(255, 255, 255, 0.8);
+}
+
+html.dark .avatar-preview:hover {
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.4),
+        inset 0 2px 4px rgba(255, 255, 255, 0.1);
+}
+
+.avatar-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.avatar-preview:hover img {
+    transform: scale(1.1);
+}
+
+.avatar-preview .no-avatar {
+    font-size: 3rem;
+    color: #ccc;
+    font-weight: 300;
+}
+
+html.dark .avatar-preview .no-avatar {
+    color: #666;
+}
+
+.avatar-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+/* Отображение UID (неизменяемое) - компактное */
+.uid-display {
+    display: block;
+    padding: 0.5rem 0.75rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    background: #f5f5f5;
+    color: #666;
+    font-family: 'Courier New', monospace;
+    font-size: 0.875rem;
+    cursor: default;
+    user-select: text; /* Разрешаем выделение текста для копирования */
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+html.dark .uid-display {
+    background: #222;
+    border-color: #444;
+    color: #bbbbbb;
+}
+
+.uid-display:hover {
+    border-color: #0066cc;
+    background: rgba(240, 248, 255, 0.8);
+}
+
+html.dark .uid-display:hover {
+    border-color: #4da6ff;
+    background: rgba(30, 50, 80, 0.8);
+}
+
+.uid-display:focus {
+    outline: none;
+}
+
+/* Информация профиля - компактная */
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: #333;
+    font-size: 0.875rem;
+}
+
+html.dark .form-group label {
+    color: #e0e0e0;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+    padding: 0.6rem 0.9rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 0.9375rem;
+    font-family: inherit;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    background: rgba(255, 255, 255, 0.8);
+    color: #333;
+    position: relative;
+    box-shadow:
+        inset 0 1px 3px rgba(0, 0, 0, 0.05),
+        0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+html.dark .form-group input[type="text"],
+html.dark .form-group input[type="email"],
+html.dark .form-group textarea {
+    background: rgba(50, 50, 50, 0.8);
+    border-color: #555;
+    color: #e0e0e0;
+    box-shadow:
+        inset 0 1px 3px rgba(0, 0, 0, 0.3),
+        0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #0066cc;
+    box-shadow:
+        0 0 0 4px rgba(0, 102, 204, 0.15),
+        inset 0 1px 3px rgba(0, 0, 0, 0.05),
+        0 1px 0 rgba(255, 255, 255, 0.6);
+    transform: translateY(-1px);
+}
+
+html.dark .form-group input[type="text"]:focus,
+html.dark .form-group input[type="email"]:focus,
+html.dark .form-group textarea:focus {
+    border-color: #4da6ff;
+    box-shadow:
+        0 0 0 4px rgba(77, 166, 255, 0.2),
+        inset 0 1px 3px rgba(0, 0, 0, 0.3),
+        0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.form-group input[type="text"]::placeholder,
+.form-group input[type="email"]::placeholder,
+.form-group textarea::placeholder {
+    color: #999;
+    transition: color 0.3s ease;
+}
+
+html.dark .form-group input[type="text"]::placeholder,
+html.dark .form-group input[type="email"]::placeholder,
+html.dark .form-group textarea::placeholder {
+    color: #777;
+}
+
+.form-group input[type="text"]:focus::placeholder,
+.form-group input[type="email"]:focus::placeholder,
+.form-group textarea:focus::placeholder {
+    color: #666;
+}
+
+html.dark .form-group input[type="text"]:focus::placeholder,
+html.dark .form-group input[type="email"]:focus::placeholder,
+html.dark .form-group textarea:focus::placeholder {
+    color: #999;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+    line-height: 1.5;
+}
+
+.readonly-input {
+    background: #f5f5f5 !important;
+    color: #666 !important;
+    cursor: not-allowed;
+}
+
+html.dark .readonly-input {
+    background: #222 !important;
+    color: #bbbbbb !important;
+}
+
+.form-group textarea::placeholder,
+.form-group input::placeholder {
+    color: #bbbbbb;
+}
+
+html.dark .form-group textarea::placeholder,
+html.dark .form-group input::placeholder {
+    color: #777;
+}
+
+/* Кнопки формы - компактные */
+.form-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.form-actions .btn {
+    flex: 1;
+    padding: 0.7rem 1.25rem;
+    font-size: 0.9375rem;
+}
+
+/* Статистика профиля - компактная */
+.profile-stats {
+    background: #fff;
+    border-radius: 10px;
+    padding: 1rem 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+html.dark .profile-stats {
+    background: #2a2a2a;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: #666;
+    font-weight: 500;
+}
+
+html.dark .stat-label {
+    color: #aaa;
+}
+
+.stat-value {
+    font-size: 0.875rem;
+    color: #004080;
+    font-weight: 600;
+    font-family: 'Courier New', monospace;
+}
+
+html.dark .stat-value {
+    color: #4da6ff;
+}
+
+
+/* Адаптивность для профиля */
+@media (max-width: 768px) {
+    .profile-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .avatar-preview {
+        width: 150px;
+        height: 150px;
+    }
+
+    .avatar-controls {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .form-actions .btn {
+        width: 100%;
+    }
+
+    .profile-stats {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-section h1 {
+        font-size: 1.5rem;
+    }
+
+    .profile-container {
+        padding: 1.5rem;
+    }
+
+    .avatar-preview {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+/* ==== Чат (Форум) ==== */
+.chat-section {
+    padding: 2rem 0;
+}
+
+.chat-section h1 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #0462c1;
+    text-align: center;
+}
+
+html.dark .chat-section h1 {
+    color: #e0e0e0;
+}
+
+
+/* Сообщение о необходимости создания профиля */
+.no-profile-message {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-top: 2rem;
+}
+
+html.dark .no-profile-message {
+    background: #2a2a2a;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.no-profile-message p {
+    font-size: 1.125rem;
+    margin-bottom: 1.5rem;
+    color: #666;
+}
+
+html.dark .no-profile-message p {
+    color: #bbbbbb;
+}
+
+/* Основной контейнер чата */
+.chat-container {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 1.5rem;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-top: 1.5rem;
+    height: calc(100vh - 280px);
+    min-height: 500px;
+}
+
+html.dark .chat-container {
+    background: #2A2A2AD9;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Боковая панель с участниками */
+.chat-sidebar {
+    background: #f8f9fa;
+    border-right: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+html.dark .chat-sidebar {
+    background: #1a1a1a;
+    border-right-color: #333;
+}
+
+.chat-sidebar h3 {
+    padding: 1rem;
+    margin: 0;
+    background: #004080;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.participants-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0.5rem;
+}
+
+/* Участник в списке */
+.participant-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-bottom: 0.25rem;
+}
+
+.participant-item:hover {
+    background: rgba(0, 64, 128, 0.1);
+}
+
+html.dark .participant-item:hover {
+    background: rgba(77, 166, 255, 0.1);
+}
+
+.participant-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 2px solid #004080;
+}
+
+html.dark .participant-avatar {
+    border-color: #0066cc;
+}
+
+.participant-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.participant-avatar .no-avatar {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ddd;
+    color: #666;
+    font-size: 1.25rem;
+    font-weight: 300;
+}
+
+html.dark .participant-avatar .no-avatar {
+    background: #444;
+    color: #bbbbbb;
+}
+
+.participant-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.participant-nickname {
+    font-weight: 600;
+    color: #333;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+html.dark .participant-nickname {
+    color: #e0e0e0;
+}
+
+.participant-uid {
+    font-size: 0.75rem;
+    color: #888;
+}
+
+html.dark .participant-uid {
+    color: #777;
+}
+
+/* Основное окно чата */
+.chat-main {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.chat-header {
+    padding: 1rem 1.5rem;
+    background: #f8f9fa;
+    border-bottom: 1px solid rgba(0, 102, 204, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    contain: layout style;
+}
+
+html.dark .chat-header {
+    background: #1a1a1a;
+    border-bottom-color: rgba(77, 166, 255, 0.2);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.chat-header-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.chat-header h2 {
+    margin: 0;
+    font-size: 1.125rem;
+    color: #004080;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+html.dark .chat-header h2 {
+    color: #4da6ff;
+}
+
+.chat-subtitle {
+    font-size: 0.75rem;
+    color: #666;
+    font-weight: 500;
+}
+
+html.dark .chat-subtitle {
+    color: #aaa;
+}
+
+.chat-header-stats {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.online-count {
+    font-size: 0.875rem;
+    color: #28a745;
+    font-weight: 600;
+    padding: 0.25rem 0.75rem;
+    background: rgba(40, 167, 69, 0.1);
+    border-radius: 20px;
+    border: 1px solid rgba(40, 167, 69, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+html.dark .online-count {
+    background: rgba(40, 167, 69, 0.2);
+    border-color: rgba(40, 167, 69, 0.3);
+}
+
+/* Стиль кнопки отправки */
+#send-button {
+    height: 45px;
+    padding: 0 1.5rem;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 45px;
+}
+
+.send-icon {
+    font-size: 1.25rem;
+    transition: transform 0.2s ease;
+}
+
+#send-button:hover .send-icon {
+    transform: scale(1.2) rotate(15deg);
+}
+
+/* Контейнер сообщений */
+.messages-container {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    background: #fafafa;
+}
+
+html.dark .messages-container {
+    background: #1a1a1a;
+}
+
+/* Сообщение - компактный дизайн */
+.message {
+    display: flex;
+    gap: 0.5rem;
+    max-width: 85%;
+    touch-action: manipulation;
+    transition: transform 0.15s ease;
+}
+
+.message:hover {
+    transform: translateY(-1px);
+}
+
+.message.own {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+}
+
+.message-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 2px solid #004080;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    background: #fff;
+}
+
+html.dark .message-avatar {
+    border-color: #0066cc;
+    background: #2a2a2a;
+}
+
+.message-avatar:hover {
+    transform: scale(1.15);
+    box-shadow: 0 3px 8px rgba(0, 64, 128, 0.25);
+}
+
+html.dark .message-avatar:hover {
+    box-shadow: 0 3px 8px rgba(77, 166, 255, 0.35);
+}
+
+.message-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.message-avatar .no-avatar {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f0f0f0, #e8e8e8);
+    color: #666;
+    font-size: 1.25rem;
+    font-weight: 300;
+}
+
+html.dark .message-avatar .no-avatar {
+    background: linear-gradient(135deg, #3a3a3a, #2a2a2a);
+    color: #aaa;
+}
+
+.message-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    max-width: 100%;
+    min-width: 0;
+}
+
+.message-header {
+    display: flex;
+    align-items: baseline;
+    gap: 0.4rem;
+}
+
+.message.own .message-header {
+    justify-content: flex-end;
+}
+
+.message-nickname {
+    font-weight: 600;
+    color: #004080;
+    font-size: 0.875rem;
+    line-height: 1.2;
+}
+
+html.dark .message-nickname {
+    color: #66b3ff;
+}
+
+.message-time {
+    font-size: 0.7rem;
+    color: #999;
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+.message-bubble {
+    background: #fff;
+    padding: 0.6rem 0.9rem;
+    border-radius: 16px;
+    border: 1px solid rgba(0, 102, 204, 0.12);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+    position: relative;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+    contain: layout style;
+}
+
+html.dark .message-bubble {
+    background: #2d2d2d;
+    border-color: rgba(77, 166, 255, 0.15);
+    color: #e8e8e8;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+.message-bubble:hover {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+html.dark .message-bubble:hover {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+}
+
+.message.own .message-bubble {
+    background: linear-gradient(135deg, #0077ee 0%, #0066cc 100%);
+    border-color: transparent;
+    color: #fff;
+    box-shadow:
+        0 2px 8px rgba(0, 102, 204, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+html.dark .message.own .message-bubble {
+    box-shadow:
+        0 2px 8px rgba(0, 102, 204, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.message-bubble p {
+    margin: 0;
+    line-height: 1.5;
+    font-size: 0.9375rem;
+    position: relative;
+    z-index: 1;
+    word-break: break-word;
+}
+
+/* Кнопка действий сообщения (меню) - скрыта, используем контекстное меню */
+.message-actions {
+    display: none;
+    position: relative;
+}
+
+/* Контекстное меню */
+.context-menu {
+    position: fixed;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 10000;
+    display: none;
+    overflow: hidden;
+}
+
+.context-menu.show {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+html.dark .context-menu {
+    background: #2a2a2a;
+    border-color: #444;
+}
+
+.context-menu-item {
+    display: block;
+    width: 100%;
+    padding: 0.875rem 1.25rem;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    font-size: 0.95rem;
+    color: #333;
+    transition: background-color 0.15s ease;
+    font-weight: 500;
+}
+
+.context-menu-reactions {
+    display: flex;
+    flex-direction: row;
+    gap: 0.2rem;
+    padding: 0.2rem 0.6rem;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.context-menu-reactions .context-menu-item {
+    width: auto;
+    flex: 0 0 auto;
+    padding: 0.25rem 0.6rem;
+    font-size: 1.2rem;
+    min-width: 1.75rem;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+html.dark .context-menu-item {
+    color: #e0e0e0;
+}
+
+.context-menu-item:hover {
+    background-color: #f0f0f0;
+    transform: translateX(2px);
+}
+
+html.dark .context-menu-item:hover {
+    background-color: #333;
+}
+
+.context-menu-item:active {
+    transform: scale(0.98);
+}
+
+.context-menu-item.delete {
+    color: #dc3545;
+}
+
+html.dark .context-menu-item.delete {
+    color: #ff6b6b;
+}
+
+.context-menu-item.delete:hover {
+    background-color: #fff5f5;
+}
+
+html.dark .context-menu-item.delete:hover {
+    background-color: #3a1a1a;
+}
+
+.action-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+    color: #666;
+    min-width: 36px;
+    min-height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+html.dark .action-btn {
+    color: #aaa;
+}
+
+.action-btn:hover {
+    background-color: rgba(0, 64, 128, 0.1);
+}
+
+html.dark .action-btn:hover {
+    background-color: rgba(77, 166, 255, 0.1);
+}
+
+.action-btn:focus-visible {
+    outline: 2px solid #004080;
+    outline-offset: 2px;
+}
+
+/* Мини-меню */
+.mini-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 100;
+    min-width: 150px;
+    display: none;
+}
+
+.mini-menu.show {
+    display: block;
+}
+
+html.dark .mini-menu {
+    background: #2a2a2a;
+    border-color: #444;
+}
+
+.menu-item {
+    display: block;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #333;
+    transition: background-color 0.2s ease;
+}
+
+html.dark .menu-item {
+    color: #e0e0e0;
+}
+
+.menu-item:hover {
+    background-color: #f0f0f0;
+}
+
+html.dark .menu-item:hover {
+    background-color: #333;
+}
+
+.menu-item.delete {
+    color: #dc3545;
+}
+
+html.dark .menu-item.delete {
+    color: #ff6b6b;
+}
+
+.menu-item.delete:hover {
+    background-color: #fff5f5;
+}
+
+html.dark .menu-item.delete:hover {
+    background-color: #3a1a1a;
+}
+
+/* Лайки и реакции - компактные */
+.like-container {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    margin-top: 2px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 0.2rem 0.45rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+    width: fit-content;
+    font-size: 0.875rem;
+}
+
+html.dark .like-container {
+    background: rgba(50, 50, 50, 0.9);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.message.own .like-container {
+    background: rgba(255, 255, 255, 0.95);
+}
+
+html.dark .message.own .like-container {
+    background: rgba(40, 40, 40, 0.95);
+}
+
+.like-container:hover {
+    transform: scale(1.05);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+}
+
+html.dark .like-container:hover {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);
+}
+
+/* Скрытие контейнера лайков при нулевом количестве */
+.like-container.hidden {
+    display: none !important;
+}
+
+/* Кнопка лайка - компактная */
+.like-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 0.2rem;
+    border-radius: 50%;
+    transition: transform 0.15s ease, color 0.15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    color: #666;
+}
+
+html.dark .like-btn {
+    color: #aaa;
+}
+
+.like-btn:hover {
+    background: rgba(0, 64, 128, 0.1);
+    transform: scale(1.3);
+}
+
+html.dark .like-btn:hover {
+    background: rgba(77, 166, 255, 0.2);
+}
+
+.like-btn.liked {
+    color: #0066cc;
+    transform: scale(1.1);
+}
+
+html.dark .like-btn.liked {
+    color: #4da6ff;
+}
+
+/* Счетчик лайков - компактный */
+.like-count {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #666;
+    min-width: 14px;
+    text-align: center;
+}
+
+html.dark .like-count {
+    color: #aaa;
+}
+
+.message.own .like-count {
+    color: #333;
+}
+
+html.dark .message.own .like-count {
+    color: #ddd;
+}
+
+/* Индикатор ответа - компактный */
+.reply-indicator {
+    display: none;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.6rem;
+    background: #e8f4fd;
+    border-radius: 6px;
+    margin: 0 0.75rem 0.4rem 0.75rem;
+    border: 1px solid #b3d9ff;
+    transition: background-color 0.2s ease;
+}
+
+html.dark .reply-indicator {
+    background: #1a3a5f;
+    border-color: #2a5a8f;
+}
+
+.reply-to-info {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex: 1;
+    min-width: 0;
+}
+
+.reply-to-label {
+    font-size: 0.7rem;
+    color: #0066cc;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+html.dark .reply-to-label {
+    color: #4da6ff;
+}
+
+.reply-to-nickname {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #004080;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 120px;
+}
+
+html.dark .reply-to-nickname {
+    color: #66b3ff;
+}
+
+.reply-to-text {
+    font-size: 0.8rem;
+    color: #555;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 160px;
+}
+
+html.dark .reply-to-text {
+    color: #bbb;
+}
+
+.cancel-reply {
+    background: none;
+    border: none;
+    font-size: 1.1rem;
+    color: #999;
+    cursor: pointer;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.15s ease, color 0.15s ease;
+    flex-shrink: 0;
+}
+
+.cancel-reply:hover {
+    background: rgba(0, 0, 0, 0.1);
+    color: #dc3545;
+}
+
+html.dark .cancel-reply:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ff6b6b;
+}
+
+/* Ссылка на ответ в сообщении - компактная */
+.reply-reference {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: 0.4rem 0.6rem;
+    background: rgba(0, 64, 128, 0.08);
+    border-left: 3px solid #0066cc;
+    border-radius: 0 6px 6px 0;
+    margin-bottom: 0.4rem;
+    max-width: 100%;
+}
+
+html.dark .reply-reference {
+    background: rgba(77, 166, 255, 0.1);
+    border-left-color: #4da6ff;
+}
+
+.reply-header {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.reply-nickname {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #0066cc;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+}
+
+html.dark .reply-nickname {
+    color: #4da6ff;
+}
+
+.reply-text {
+    font-size: 0.875rem;
+    color: #555;
+    line-height: 1.4;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+html.dark .reply-text {
+    color: #bbb;
+}
+
+/* Контейнер реакций */
+.reactions-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+    margin-top: 3px;
+}
+
+.reaction-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    padding: 0.2rem 0.5rem;
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(0, 64, 128, 0.2);
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    transition: transform 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+    min-height: 24px;
+}
+
+html.dark .reaction-btn {
+    background: rgba(50, 50, 50, 0.85);
+    border-color: rgba(77, 166, 255, 0.3);
+}
+
+.reaction-btn:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(0, 64, 128, 0.4);
+}
+
+html.dark .reaction-btn:hover {
+    background: rgba(60, 60, 60, 0.95);
+    border-color: rgba(77, 166, 255, 0.5);
+}
+
+.reaction-btn.reacted {
+    background: rgba(0, 102, 204, 0.15);
+    border-color: #0066cc;
+}
+
+html.dark .reaction-btn.reacted {
+    background: rgba(77, 166, 255, 0.2);
+    border-color: #4da6ff;
+}
+
+.reaction-emoji {
+    font-size: 1rem;
+    line-height: 1;
+}
+
+.reaction-count {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #666;
+    min-width: 14px;
+    text-align: center;
+}
+
+html.dark .reaction-count {
+    color: #aaa;
+}
+
+.message.own .reaction-count {
+    color: #333;
+}
+
+html.dark .message.own .reaction-count {
+    color: #ddd;
+}
+
+/* Область ввода сообщения */
+.chat-input-area {
+    padding: 1rem;
+    background: #f8f9fa;
+    border-top: 1px solid #eee;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-end;
+}
+
+html.dark .chat-input-area {
+    background: #1a1a1a;
+    border-top-color: #333;
+}
+
+.current-user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    flex-shrink: 0;
+}
+
+.current-user-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #004080;
+}
+
+html.dark .current-user-avatar {
+    border-color: #0066cc;
+}
+
+.current-user-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.current-user-avatar .no-avatar {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ddd;
+    color: #666;
+    font-size: 1.5rem;
+    font-weight: 300;
+}
+
+html.dark .current-user-avatar .no-avatar {
+    background: #444;
+    color: #bbbbbb;
+}
+
+.current-user-name {
+    font-size: 0.75rem;
+    color: #666;
+    text-align: center;
+    max-width: 60px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+.message-input-wrapper {
+    flex: 1;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.message-input {
+    flex: 1;
+    padding: 0.6rem 0.9rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 0.9375rem;
+    font-family: inherit;
+    resize: none;
+    min-height: 38px;
+    max-height: 150px;
+    background: #fff;
+    color: #333;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    overflow-y: auto;
+    line-height: 1.5;
+}
+
+html.dark .message-input {
+    background: #333;
+    border-color: #444;
+    color: #e0e0e0;
+}
+
+.message-input:focus {
+    outline: none;
+    border-color: #004080;
+    box-shadow: 0 0 0 3px rgba(0, 64, 128, 0.1);
+}
+
+html.dark .message-input:focus {
+    border-color: #0066cc;
+    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.2);
+}
+
+#send-button {
+    height: 38px;
+    padding: 0 1.25rem;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Модальное окно профиля пользователя */
+.user-profile-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3000;
+    padding: 1rem;
+}
+
+.user-profile-modal.hidden {
+    display: none;
+}
+
+.user-profile-content {
+    background: #fff;
+    border-radius: 12px;
+    max-width: 450px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+html.dark .user-profile-content {
+    background: #2a2a2a;
+}
+
+.close-profile-btn {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #bbbbbb;
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    z-index: 10;
+}
+
+.close-profile-btn:hover {
+    background: rgba(0, 0, 0, 0.1);
+    color: #333;
+}
+
+html.dark .close-profile-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+.profile-modal-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: #004080;
+    border-radius: 12px 12px 0 0;
+}
+
+
+.modal-user-avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #fff;
+    flex-shrink: 0;
+}
+
+.modal-user-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.modal-user-avatar .no-avatar {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ddd;
+    color: #666;
+    font-size: 2.5rem;
+    font-weight: 300;
+}
+
+html.dark .modal-user-avatar .no-avatar {
+    background: #444;
+    color: #bbbbbb;
+}
+
+.modal-user-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.modal-user-info h3 {
+    margin: 0 0 0.25rem 0;
+    color: #fff;
+    font-size: 1.25rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.modal-user-uid {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.875rem;
+    font-family: monospace;
+}
+
+.profile-modal-body {
+    padding: 1.5rem;
+}
+
+.profile-modal-field {
+    margin-bottom: 1.25rem;
+}
+
+.profile-modal-field:last-child {
+    margin-bottom: 0;
+}
+
+.profile-modal-field label {
+    display: block;
+    font-weight: 600;
+    color: #004080;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+html.dark .profile-modal-field label {
+    color: #e0e0e0;
+}
+
+
+.profile-modal-field span,
+.profile-modal-field p {
+    display: block;
+    color: #333;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+html.dark .profile-modal-field span,
+html.dark .profile-modal-field p {
+    color: #e0e0e0;
+}
+
+.profile-modal-field p {
+    margin: 0;
+    word-wrap: break-word;
+}
+
+/* Адаптивность для чата */
+@media (max-width: 768px) {
+    .chat-container {
+        grid-template-columns: 1fr;
+        height: auto;
+        min-height: 600px;
+    }
+
+    .chat-sidebar {
+        display: none; /* На мобильных скрываем список участников, можно сделать через переключатель */
+    }
+
+    .chat-sidebar.mobile-visible {
+        display: flex;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 100;
+        border-right: none;
+    }
+
+    .message {
+        max-width: 90%;
+        gap: 0.4rem;
+    }
+
+    .message-avatar {
+        width: 32px;
+        height: 32px;
+    }
+
+    .message-nickname {
+        font-size: 0.8rem;
+    }
+
+    .message-time {
+        font-size: 0.65rem;
+    }
+
+    .message-bubble {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.875rem;
+    }
+
+    .message-input-area {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .current-user-info {
+        flex-direction: row;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .current-user-name {
+        max-width: 150px;
+        font-size: 0.875rem;
+    }
+
+    .user-profile-content {
+        margin: 0.5rem;
+        max-height: 95vh;
+    }
+}
+
+@media (max-width: 480px) {
+    .chat-section h1 {
+        font-size: 1.5rem;
+    }
+
+    .chat-header {
+        padding: 0.75rem 1rem;
+    }
+
+    .chat-header h2 {
+        font-size: 1rem;
+    }
+
+    .messages-container {
+        padding: 0.5rem;
+    }
+
+    .message {
+        max-width: 88%;
+        gap: 0.35rem;
+    }
+
+    .message-avatar {
+        width: 30px;
+        height: 30px;
+    }
+
+    .message-nickname {
+        font-size: 0.75rem;
+    }
+
+    .message-time {
+        font-size: 0.6rem;
+    }
+
+    .message-bubble {
+        padding: 0.45rem 0.65rem;
+        font-size: 0.85rem;
+    }
+
+    .reply-indicator {
+        margin: 0 0.5rem 0.35rem 0.5rem;
+        padding: 0.35rem 0.5rem;
+    }
+
+    .reply-to-nickname {
+        font-size: 0.75rem;
+        max-width: 100px;
+    }
+
+    .reply-to-text {
+        font-size: 0.75rem;
+        max-width: 130px;
+    }
+
+    .cancel-reply {
+        width: 18px;
+        height: 18px;
+        font-size: 1rem;
+    }
+
+    .reply-reference {
+        padding: 0.35rem 0.5rem;
+        margin-bottom: 0.35rem;
+    }
+
+    .like-container {
+        padding: 0.15rem 0.35rem;
+        font-size: 0.8rem;
+    }
+
+    .like-btn {
+        width: 20px;
+        height: 20px;
+        font-size: 0.9rem;
+    }
+
+    .like-count {
+        font-size: 0.65rem;
+    }
+
+    .current-user-avatar {
+        width: 32px;
+        height: 32px;
+    }
+
+    .current-user-name {
+        font-size: 0.8rem;
+        max-width: 120px;
+    }
+
+    .chat-header h2 {
+        font-size: 0.9rem;
+    }
+
+    .chat-subtitle {
+        font-size: 0.75rem;
+    }
+
+    .online-count {
+        font-size: 0.75rem;
+    }
+}

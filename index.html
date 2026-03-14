@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дисненская СШ</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Добавляем стили для красивого оформления сайта -->
+    <script>
+        // Применяем тему сразу, без моргания
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark');
+            }
+        })();
+    </script>
+</head>
+<body>
+    <!-- ---------- Верхняя панель ---------- -->
+    <header class="top-bar">
+        <div class="container">
+            <span class="site-title">НЕ официальный сайт Дисненской средней школы</span>
+            <div class="top-bar-right">
+                <a href="profile.html" class="top-bar-avatar" id="top-bar-avatar" title="Мой профиль">
+                    <div class="avatar-small" id="top-bar-avatar-img"></div>
+                </a>
+                <button id="menu-toggle" class="menu-toggle" aria-label="Открыть меню">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ---------- Выдвижная панель (сайдбар) ---------- -->
+    <aside id="drawer" class="drawer">
+        <button class="drawer-close" id="drawer-close" aria-label="Закрыть меню">&times;</button>
+        <nav class="drawer-nav">
+            <a href="index.html" class="drawer-link">Главная</a>
+            <a href="forum.html" class="drawer-link">Форум</a>
+            <a href="pride.html" class="drawer-link">Гордость</a>
+            <a href="news.html" class="drawer-link">Новости</a>
+            <a href="profile.html" class="drawer-link">Профиль</a>
+        </nav>
+        <div class="drawer-footer">
+            <button id="theme-toggle-drawer" class="theme-toggle" aria-label="Переключить тему">
+                <span class="theme-icon">☾</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- ---------- Основное содержимое ---------- -->
+    <main class="container">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Привет!</h1>
+                <p>Это НЕ официальный сайт Дисненской средней школы. Здесь вы найдёте новости, форум и информацию об учениках.</p>
+                <div class="hero-buttons">
+                    <a href="forum.html" class="btn btn-primary">Перейти к форуму</a>
+                    <a href="news.html" class="btn btn-primary">Узнать больше</a>
+                </div>
+            </div>
+            <div class="hero-decoration">
+                <div class="decoration-circle circle-1"></div>
+                <div class="decoration-circle circle-2"></div>
+                <div class="decoration-circle circle-3"></div>
+            </div>
+        </section>
+        
+        <section class="greeting">
+            <p>✨ Передаём привет работникам нашей школы, тут всё классно, можете выходить :)</p>
+        </section>
+    </main>
+
+    <!-- ---------- Подвал ---------- -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 Дисненская средняя школа. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

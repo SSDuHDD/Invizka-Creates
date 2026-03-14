@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль - Дисненская СШ</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        // Применяем тему сразу, без моргания
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark');
+            }
+        })();
+    </script>
+</head>
+<body>
+    <!-- ---------- Верхняя панель ---------- -->
+    <header class="top-bar">
+        <div class="container">
+            <span class="site-title">НЕ официальный сайт Дисненской средней школы</span>
+            <div class="top-bar-right">
+                <a href="profile.html" class="top-bar-avatar" id="top-bar-avatar" title="Мой профиль">
+                    <div class="avatar-small" id="top-bar-avatar-img"></div>
+                </a>
+                <button id="menu-toggle" class="menu-toggle" aria-label="Открыть меню">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ---------- Выдвижная панель (сайдбар) ---------- -->
+    <aside id="drawer" class="drawer">
+        <button class="drawer-close" id="drawer-close" aria-label="Закрыть меню">&times;</button>
+        <nav class="drawer-nav">
+            <a href="index.html" class="drawer-link">Главная</a>
+            <a href="forum.html" class="drawer-link">Форум</a>
+            <a href="pride.html" class="drawer-link">Гордость</a>
+            <a href="news.html" class="drawer-link">Новости</a>
+            <a href="profile.html" class="drawer-link">Профиль</a>
+        </nav>
+        <div class="drawer-footer">
+            <button id="theme-toggle-drawer" class="theme-toggle" aria-label="Переключить тему">
+                <span class="theme-icon">☾</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- ---------- Основное содержимое ---------- -->
+    <main class="container">
+        <section class="profile-section">
+            <div class="profile-header">
+                <h1>Профиль пользователя</h1>
+                <p class="profile-subtitle">Управляйте своей информацией и настройками аккаунта</p>
+            </div>
+
+            <!-- Сообщение об успешном сохранении -->
+            <div id="save-message" class="save-message hidden">
+                <span id="save-message-text"></span>
+            </div>
+
+            <!-- Форма профиля -->
+            <div class="profile-container">
+                <!-- Аватарка -->
+                <div class="avatar-section">
+                    <div class="avatar-preview" id="avatar-preview">
+                        <img id="current-avatar" src="" alt="Аватар" loading="lazy">
+                    </div>
+                    <div class="avatar-controls">
+                        <label for="avatar-upload" class="btn btn-secondary">
+                            <span class="upload-icon">📷</span> Загрузить аватар
+                        </label>
+                        <input type="file" id="avatar-upload" accept="image/*" style="display: none;">
+                        <button id="remove-avatar" class="btn btn-secondary">
+                            <span class="delete-icon">🗑️</span> Удалить аватар
+                        </button>
+                    </div>
+                    <p class="avatar-hint">Максимальный размер: 5MB. Поддерживаемые форматы: JPG, PNG, GIF</p>
+                </div>
+
+                <!-- Информация о профиле -->
+                <div class="profile-info">
+                    <div class="form-group">
+                        <label for="user-uid">
+                            UID (неизменяемый)
+                        </label>
+                        <span id="user-uid" class="uid-display" title="UID присваивается автоматически и не может быть изменен"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="user-nickname">
+                            Никнейм 
+                        </label>
+                        <input type="text" id="user-nickname" maxlength="50" required placeholder="Введите ваш никнейм">
+                        <div class="char-count"><span id="nickname-count">0</span>/50</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="user-email">
+                            Email (необязательно)
+                        </label>
+                        <input type="email" id="user-email" placeholder="example@mail.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="user-bio">
+                            О себе <span class="optional">(до 500 символов)</span>
+                        </label>
+                        <textarea id="user-bio" rows="4" maxlength="500" placeholder="Расскажите о себе..."></textarea>
+                        <div class="char-count"><span id="bio-count">0</span>/500</div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button id="save-profile" class="btn btn-primary">
+                            <span class="save-icon">💾</span> Сохранить профиль
+                        </button>
+                        <button id="clear-profile" class="btn btn-danger">
+                            <span class="clear-icon">🔄</span> Очистить профиль
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Статистика -->
+            <div class="profile-stats">
+                <div class="stat-item">
+                    <span class="stat-label">Дата создания:</span>
+                    <span id="created-date" class="stat-value">-</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Последнее обновление:</span>
+                    <span id="updated-date" class="stat-value">-</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ---------- Подвал ---------- -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 Дисненская средняя школа. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
