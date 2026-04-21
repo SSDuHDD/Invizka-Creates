@@ -51,7 +51,7 @@ body {
     padding: 0 2rem;
 }
 
-/* ===== STARS (для проектных страниц) ===== */
+/* ===== STARS ===== */
 .stars-container {
     position: fixed;
     top: 0;
@@ -126,7 +126,7 @@ body {
     background: rgba(192, 132, 252, 0.15);
 }
 
-/* ===== MAIN NAVBAR (главная страница) ===== */
+/* ===== MAIN NAVBAR (главная) ===== */
 .navbar {
     display: flex;
     flex-wrap: wrap;
@@ -264,7 +264,7 @@ body {
 
 /* ===== WORKS SECTION ===== */
 .works-section {
-    padding: 2rem 0 5rem 0;
+    padding: 2rem 0 3rem 0;
     scroll-margin-top: 80px;
 }
 .section-title {
@@ -286,7 +286,8 @@ body {
     cursor: pointer;
     box-shadow: 0 10px 20px -5px rgba(0,0,0,0.4);
 }
-.card:hover {
+.card:hover,
+.card:active {
     transform: translateY(-8px);
     border-color: rgba(192,132,252,0.5);
     box-shadow: 0 20px 30px -12px rgba(0,0,0,0.6);
@@ -389,6 +390,64 @@ body {
     transform: translateY(1px) translateX(2px);
 }
 
+/* ===== FAQ (раскрывающийся блок) ===== */
+.faq-section {
+    margin: 2rem 0 3rem;
+}
+.faq-item {
+    background: #11131a;
+    border-radius: 1.5rem;
+    border: 1px solid rgba(192, 132, 252, 0.25);
+    overflow: hidden;
+}
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 1.8rem;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #e2e8f0;
+    transition: background 0.2s;
+}
+.faq-question:hover {
+    background: rgba(192, 132, 252, 0.1);
+}
+.faq-question i:first-child {
+    color: #c084fc;
+    margin-right: 0.8rem;
+}
+.faq-arrow {
+    color: #c084fc;
+    transition: transform 0.3s ease;
+}
+.faq-item.active .faq-arrow {
+    transform: rotate(180deg);
+}
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    padding: 0 1.8rem;
+    color: #b9c3d4;
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+.faq-item.active .faq-answer {
+    max-height: 400px;
+    padding-bottom: 1.5rem;
+}
+.faq-answer p {
+    margin-bottom: 1rem;
+}
+.faq-answer p:last-child {
+    margin-bottom: 0;
+}
+.faq-answer strong {
+    color: #c084fc;
+}
+
 /* ===== PROJECT PAGES COMMON ===== */
 .project-page.container {
     padding: 3.5rem 2rem 2rem 2rem;
@@ -400,10 +459,6 @@ body {
 #top {
     scroll-margin-top: 80px;
 }
-.hero-title, .service-title, .server-title, .pricing-title, .donate-title, .section-title {
-    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    letter-spacing: 0.5px;
-}
 .hero-title, .service-title, .server-title {
     font-size: 4rem;
     font-weight: 800;
@@ -413,11 +468,7 @@ body {
     color: transparent;
     margin-bottom: 1rem;
     letter-spacing: -0.02em;
-}
-.pricing-title {
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 .hero-subtitle, .service-description, .server-description {
     font-size: 1.2rem;
@@ -427,7 +478,7 @@ body {
     line-height: 1.7;
 }
 
-/* Features / Advantages cards */
+/* Features / Advantages */
 .features-section, .advantages-section {
     padding: 4rem 0;
     scroll-margin-top: 100px;
@@ -441,6 +492,7 @@ body {
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 .section-subtitle {
     text-align: center;
@@ -480,10 +532,12 @@ body {
     transition: height 0.35s ease;
     z-index: 0;
 }
-.feature-card:hover::before, .advantage-card:hover::before {
+.feature-card:hover::before, .advantage-card:hover::before,
+.feature-card:active::before, .advantage-card:active::before {
     height: 85%;
 }
-.feature-card:hover, .advantage-card:hover {
+.feature-card:hover, .advantage-card:hover,
+.feature-card:active, .advantage-card:active {
     transform: translateY(-6px);
     border-color: rgba(192, 132, 252, 0.5);
 }
@@ -507,7 +561,7 @@ body {
     z-index: 1;
 }
 
-/* Pricing / Donate sections */
+/* Pricing / Donate */
 .pricing-section, .donate-section {
     padding: 4rem 0;
     scroll-margin-top: 100px;
@@ -524,6 +578,8 @@ body {
     background-clip: text;
     color: transparent;
     margin-bottom: 0.5rem;
+    text-align: center;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 .pricing-subtitle, .donate-subtitle {
     color: #a78bfa;
@@ -547,7 +603,8 @@ body {
     flex: 1;
     max-width: 320px;
 }
-.pricing-card:hover {
+.pricing-card:hover,
+.pricing-card:active {
     transform: translateY(-5px);
     border-color: #c084fc;
     box-shadow: 0 10px 25px rgba(192, 132, 252, 0.15);
@@ -723,6 +780,7 @@ body {
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 .news-grid {
     display: grid;
@@ -736,7 +794,8 @@ body {
     border-left: 4px solid #c084fc;
     transition: 0.2s;
 }
-.news-card:hover {
+.news-card:hover,
+.news-card:active {
     transform: translateX(5px);
     background: #151821;
 }
@@ -765,6 +824,7 @@ body {
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 .servers-grid {
     display: flex;
@@ -781,7 +841,8 @@ body {
     transition: 0.2s;
     flex: 0 1 280px;
 }
-.server-card:hover {
+.server-card:hover,
+.server-card:active {
     transform: translateY(-5px);
     border-color: rgba(192, 132, 252, 0.5);
     background: #151821;
@@ -910,7 +971,9 @@ footer {
     background: rgba(34, 197, 94, 0.15);
 }
 .vpn-theme .feature-card:hover,
-.vpn-theme .server-card:hover {
+.vpn-theme .server-card:hover,
+.vpn-theme .feature-card:active,
+.vpn-theme .server-card:active {
     border-color: rgba(34, 197, 94, 0.5);
 }
 .vpn-theme .feature-card::before,
@@ -918,7 +981,8 @@ footer {
     background: linear-gradient(to top, rgba(34, 197, 94, 0.25), transparent);
 }
 .vpn-theme .pricing-card:hover,
-.vpn-theme .server-card:hover {
+.vpn-theme .server-card:hover,
+.vpn-theme .pricing-card:active {
     border-color: #22c55e;
     box-shadow: 0 10px 25px rgba(34, 197, 94, 0.15);
 }
@@ -945,7 +1009,7 @@ footer {
     scrollbar-color: #22c55e #11131a;
 }
 
-/* ===== VISUAL MOD THEME (фон с размытием и неровной виньеткой) ===== */
+/* ===== VISUAL MOD THEME ===== */
 .visual-theme {
     background-color: #0a0c10;
 }
@@ -999,12 +1063,16 @@ footer {
     .server-title, .hero-title, .service-title {
         font-size: 2.2rem;
     }
+    .nav-bar {
+        min-width: auto;
+        max-width: calc(100% - 30px);
+    }
     .nav-container {
-        padding: 0 20px;
-        gap: 0.8rem;
+        padding: 0 15px;
+        gap: 0.6rem;
     }
     .nav-link {
-        padding: 0.3rem 0.8rem;
+        padding: 0.4rem 0.9rem;
         font-size: 0.85rem;
     }
     .donate-details {
@@ -1044,32 +1112,43 @@ footer {
         min-height: 480px;
         padding: 1.2rem;
     }
-    .nav-container {
-        gap: 0.3rem;
-        padding: 0 10px;
-        flex-wrap: nowrap;
-        width: max-content;  /* растягиваем по содержимому */
-        margin: 0 auto;
-    }
-    .nav-link {
-        padding: 0.3rem 0.7rem;
-        font-size: 0.75rem;
-        white-space: nowrap;
-        flex-shrink: 0;
-    }
-    .nav-bar::-webkit-scrollbar {
-        display: none;  /* Chrome/Safari */
-    }
-     .nav-bar {
-        min-width: auto;
-        max-width: calc(100% - 20px);
-        padding: 0.3rem 0;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;  /* Firefox */
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
     }
     .price {
         font-size: 2rem;
+    }
+    .nav-bar {
+        max-width: calc(100% - 16px);
+        padding: 0.3rem 0;
+    }
+    .nav-container {
+        gap: 0.2rem;
+        padding: 0 8px;
+        flex-wrap: nowrap;
+        justify-content: center;
+        width: 100%;
+    }
+    .nav-link {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.7rem;
+        white-space: nowrap;
+        flex-shrink: 1;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+@media (max-width: 360px) {
+    .nav-container {
+        gap: 0.1rem;
+        padding: 0 4px;
+    }
+    .nav-link {
+        padding: 0.2rem 0.4rem;
+        font-size: 0.65rem;
     }
 }
 
