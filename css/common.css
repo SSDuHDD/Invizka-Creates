@@ -1045,19 +1045,28 @@ footer {
         padding: 1.2rem;
     }
     .nav-container {
-        gap: 0.2rem;
-        padding: 0 8px;
-        flex-wrap: nowrap;  /* запрещаем перенос кнопок */
+        gap: 0.3rem;
+        padding: 0 10px;
+        flex-wrap: nowrap;
+        width: max-content;  /* растягиваем по содержимому */
+        margin: 0 auto;
     }
     .nav-link {
-        padding: 0.25rem 0.5rem;
-        font-size: 0.7rem;
-        white-space: nowrap;  /* текст в одну строку */
+        padding: 0.3rem 0.7rem;
+        font-size: 0.75rem;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+    .nav-bar::-webkit-scrollbar {
+        display: none;  /* Chrome/Safari */
     }
      .nav-bar {
         min-width: auto;
         max-width: calc(100% - 20px);
         padding: 0.3rem 0;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;  /* Firefox */
     }
     .price {
         font-size: 2rem;
