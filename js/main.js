@@ -1,4 +1,4 @@
-// ===== СОХРАНЕНИЕ ПОЗИЦИИ СКРОЛЛА ПРИ ПЕРЕЗАГРУЗКЕ (главная) =====
+// ===== СОХРАНЕНИЕ ПОЗИЦИИ СКРОЛЛА =====
 (function() {
     if (sessionStorage.getItem('scrollPos')) {
         window.scrollTo(0, sessionStorage.getItem('scrollPos'));
@@ -9,7 +9,7 @@
     });
 })();
 
-// ===== ЭФФЕКТ ДВИЖУЩИХСЯ ЗВЁЗД =====
+// ===== ЗВЁЗДЫ =====
 (function initStars() {
     const starsContainer = document.getElementById('starsContainer');
     if (!starsContainer) return;
@@ -54,7 +54,7 @@
     });
 })();
 
-// ===== ЭФФЕКТ СВЕЧЕНИЯ ПРИ НАВЕДЕНИИ НА КАРТОЧКИ РАБОТ =====
+// ===== СВЕЧЕНИЕ НА КАРТОЧКАХ ГЛАВНОЙ =====
 (function initCardGlow() {
     const cards = document.querySelectorAll('.works-section .card');
     if (cards.length === 0) return;
@@ -73,7 +73,18 @@
     });
 })();
 
-// ===== ПЛАВНАЯ ПРОКРУТКА ДЛЯ ЯКОРЕЙ И data-scroll =====
+// ===== FAQ (раскрывающийся блок) =====
+(function initFaq() {
+    const faqItem = document.querySelector('.faq-item');
+    if (!faqItem) return;
+
+    const question = faqItem.querySelector('.faq-question');
+    question.addEventListener('click', () => {
+        faqItem.classList.toggle('active');
+    });
+})();
+
+// ===== ПЛАВНАЯ ПРОКРУТКА =====
 function scrollToElement(el) {
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
@@ -102,7 +113,7 @@ document.querySelectorAll('[data-scroll]').forEach(btn => {
     });
 });
 
-// Специфично для главной: ссылка "Работы"
+// Ссылка "Работы" на главной
 const worksLink = document.querySelector('.works-nav-link');
 if (worksLink) {
     worksLink.addEventListener('click', function(e) {
@@ -112,12 +123,12 @@ if (worksLink) {
     });
 }
 
-// ===== КЛАСС ДЛЯ BODY ПРИ СКРОЛЛЕ =====
+// Класс scrolled для body
 window.addEventListener('scroll', () => {
     document.body.classList.toggle('scrolled', window.scrollY > 50);
 });
 
-// ===== ЛОГИКА СТРАНИЦЫ MINECRAFT (привилегии и донат) =====
+// ===== MINECRAFT: ПРИВИЛЕГИИ И ДОНАТ =====
 if (document.getElementById('privilegesButtons')) {
     const privilegesDataRaw = {
         prince: { name: "Принц", features: ["Эксклюзивный префикс в чате", "Бонус 500 монет", "3 дома (/sethome)", "Ежедневный кейс"], prices: {30:390, 90:990, 180:1590, forever:2490}, sortPrice: 390 },
@@ -141,7 +152,6 @@ if (document.getElementById('privilegesButtons')) {
         `<button class="privilege-btn" data-priv="${key}">${privilegesData[key].name}</button>`
     ).join('');
 
-    // Данные новостей
     const newsData = [
         { date: "2026-07-06", displayDate: "06.07.2026", text: "Летний вайп — жаркие ивенты и битвы" },
         { date: "2026-04-02", displayDate: "02.04.2026", text: "Весенний вайп — новый сезон, новые возможности" },
@@ -190,7 +200,6 @@ if (document.getElementById('privilegesButtons')) {
     document.querySelector('.duration-btn').classList.add('active');
     updateDonateUI();
 
-    // Копирование IP
     window.copyIP = function() {
         navigator.clipboard.writeText('fun.invizkasmp.pro');
         const ipEl = document.querySelector('.ip-address');
