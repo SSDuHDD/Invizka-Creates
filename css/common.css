@@ -51,65 +51,7 @@ body {
     padding: 0 2rem;
 }
 
-/* ===== FAQ ===== */
-.faq-section {
-    margin: 2rem 0 3rem;
-}
-.faq-item {
-    background: #11131a;
-    border-radius: 1.5rem;
-    border: 1px solid rgba(192, 132, 252, 0.25);
-    overflow: hidden;
-}
-.faq-question {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.2rem 1.8rem;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 1.1rem;
-    color: #e2e8f0;
-    transition: background 0.2s;
-}
-.faq-question:hover {
-    background: rgba(192, 132, 252, 0.1);
-}
-.faq-question i:first-child {
-    color: #c084fc;
-    margin-right: 0.8rem;
-}
-.faq-arrow {
-    color: #c084fc;
-    transition: transform 0.3s ease;
-}
-.faq-item.active .faq-arrow {
-    transform: rotate(180deg);
-}
-.faq-answer {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease;
-    padding: 0 1.8rem;
-    color: #b9c3d4;
-    font-size: 0.95rem;
-    line-height: 1.7;
-}
-.faq-item.active .faq-answer {
-    max-height: 800px;  /* <-- исправлено */
-    padding-bottom: 1.5rem;
-}
-.faq-answer p {
-    margin-bottom: 1rem;
-}
-.faq-answer p:last-child {
-    margin-bottom: 0;
-}
-.faq-answer strong {
-    color: #c084fc;
-}
-
-/* ===== STARS ===== */
+/* ===== STARS (только для Minecraft и Visual) ===== */
 .stars-container {
     position: fixed;
     top: 0;
@@ -448,7 +390,7 @@ body {
     transform: translateY(1px) translateX(2px);
 }
 
-/* ===== FAQ ===== */
+/* ===== FAQ (исправлено для мобильных) ===== */
 .faq-section {
     margin: 2rem 0 3rem;
 }
@@ -493,7 +435,7 @@ body {
     line-height: 1.7;
 }
 .faq-item.active .faq-answer {
-    max-height: 400px;
+    max-height: 1200px;  /* большой запас для мобильных */
     padding-bottom: 1.5rem;
 }
 .faq-answer p {
@@ -1001,9 +943,7 @@ footer {
     color: #6b7280;
 }
 
-/* ===== SMP GLOW EFFECTS (добавляем свечение и прозрачность) ===== */
-/* Применяется только если нет класса vpn-theme или visual-theme, 
-   но мы добавим на body класс smp-theme для страницы SMP */
+/* ===== SMP GLOW EFFECTS ===== */
 .smp-theme .nav-bar {
     box-shadow: 0 0 20px rgba(192, 132, 252, 0.3);
     background: rgba(20, 15, 30, 0.7);
@@ -1033,7 +973,7 @@ footer {
     text-shadow: 0 0 15px #c084fc, 0 0 30px #a855f7;
 }
 
-/* ===== VPN GLASS EFFECTS ===== */
+/* ===== VPN GLASS EFFECTS (уменьшен glow, все иконки зелёные) ===== */
 .vpn-theme {
     background: radial-gradient(circle at 20% 30%, #0a1a1a, #050a0a);
 }
@@ -1044,7 +984,7 @@ footer {
     background: rgba(10, 25, 20, 0.5);
     backdrop-filter: blur(20px) saturate(180%);
     border: 1px solid rgba(34, 197, 94, 0.4);
-    box-shadow: 0 8px 32px rgba(0, 30, 20, 0.3);
+    box-shadow: 0 8px 20px rgba(0, 30, 20, 0.2);
 }
 .vpn-theme .feature-card,
 .vpn-theme .pricing-card,
@@ -1053,43 +993,82 @@ footer {
     background: rgba(15, 30, 25, 0.4);
     backdrop-filter: blur(12px);
     border: 1px solid rgba(34, 197, 94, 0.3);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
-    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15), inset 0 0 0 1px rgba(255, 255, 255, 0.03);
 }
 .vpn-theme .feature-card:hover,
 .vpn-theme .pricing-card:hover,
 .vpn-theme .server-card:hover {
     background: rgba(25, 45, 40, 0.6);
     border-color: rgba(34, 197, 94, 0.6);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
-    transform: translateY(-6px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
 }
+
+/* Все иконки и акценты — зелёные */
 .vpn-theme .feature-card i,
-.vpn-theme .server-card i {
-    filter: drop-shadow(0 0 8px rgba(34, 197, 94, 0.5));
-}
-.vpn-theme .price {
-    text-shadow: 0 0 15px #22c55e;
-}
-.vpn-theme .hero-title,
-.vpn-theme .section-title,
+.vpn-theme .server-card i,
+.vpn-theme .pricing-card .price,
+.vpn-theme .price-btn,
+.vpn-theme .card-btn,
+.vpn-theme .nav-link:hover,
+.vpn-theme .telegram-btn,
+.vpn-theme .faq-question i:first-child,
+.vpn-theme .faq-arrow,
+.vpn-theme .ip-address,
+.vpn-theme .social-icon:hover,
+.vpn-theme .news-date,
+.vpn-theme .privilege-features h4,
+.vpn-theme .privilege-features li::before,
+.vpn-theme .privileges-list h3,
+.vpn-theme .donate-title,
 .vpn-theme .pricing-title,
-.vpn-theme .servers-title {
-    text-shadow: 0 0 20px #22c55e, 0 0 40px #16a34a;
+.vpn-theme .servers-title,
+.vpn-theme .section-title {
+    color: #22c55e !important;
+}
+
+.vpn-theme .service-title,
+.vpn-theme .pricing-title,
+.vpn-theme .servers-title,
+.vpn-theme .section-title {
+    background: linear-gradient(135deg, #ffffff, #22c55e, #16a34a);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 10px rgba(34, 197, 94, 0.3);
+}
+
+.vpn-theme .price-btn,
+.vpn-theme .card-btn {
+    border-color: #22c55e;
+}
+.vpn-theme .price-btn:hover,
+.vpn-theme .card-btn:hover {
+    background: rgba(34, 197, 94, 0.15);
+}
+.vpn-theme .feature-card::before,
+.vpn-theme .advantage-card::before {
+    background: linear-gradient(to top, rgba(34, 197, 94, 0.15), transparent);
+}
+.vpn-theme .nav-link:hover {
+    background: rgba(34, 197, 94, 0.15);
 }
 .vpn-theme .telegram-btn {
     background: rgba(6, 78, 59, 0.6);
-    backdrop-filter: blur(8px);
     border: 1px solid #22c55e;
-    box-shadow: 0 0 15px rgba(34, 197, 94, 0.3);
 }
 .vpn-theme .telegram-btn:hover {
     background: rgba(6, 95, 70, 0.8);
-    box-shadow: 0 0 25px #22c55e;
 }
-.vpn-theme footer {
-    background: rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(4px);
+
+/* Зелёный скроллбар */
+.vpn-theme ::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+}
+.vpn-theme ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #4ade80, #22c55e);
+}
+.vpn-theme * {
+    scrollbar-color: #22c55e #11131a;
 }
 
 /* ===== VISUAL MOD THEME ===== */
@@ -1185,6 +1164,14 @@ footer {
     .card-img {
         height: 160px;
     }
+    .faq-question {
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
+    }
+    .faq-answer {
+        padding: 0 1.5rem;
+        font-size: 0.9rem;
+    }
 }
 
 @media (max-width: 550px) {
@@ -1221,6 +1208,9 @@ footer {
         min-width: 0;
         overflow: hidden;
         text-overflow: ellipsis;
+    }
+    .faq-item.active .faq-answer {
+        max-height: 1500px; /* ещё больше запас для очень узких экранов */
     }
 }
 
