@@ -73,7 +73,7 @@
     });
 })();
 
-// ===== FAQ (раскрывающийся блок) =====
+// ===== FAQ =====
 (function initFaq() {
     const faqItem = document.querySelector('.faq-item');
     if (!faqItem) return;
@@ -113,7 +113,6 @@ document.querySelectorAll('[data-scroll]').forEach(btn => {
     });
 });
 
-// Ссылка "Работы" на главной
 const worksLink = document.querySelector('.works-nav-link');
 if (worksLink) {
     worksLink.addEventListener('click', function(e) {
@@ -123,12 +122,11 @@ if (worksLink) {
     });
 }
 
-// Класс scrolled для body
 window.addEventListener('scroll', () => {
     document.body.classList.toggle('scrolled', window.scrollY > 50);
 });
 
-// ===== MINECRAFT: ПРИВИЛЕГИИ И ДОНАТ =====
+// ===== MINECRAFT SMP PRIVILEGES =====
 if (document.getElementById('privilegesButtons')) {
     const privilegesDataRaw = {
         prince: { name: "Принц", features: ["Эксклюзивный префикс в чате", "Бонус 500 монет", "3 дома (/sethome)", "Ежедневный кейс"], prices: {30:390, 90:990, 180:1590, forever:2490}, sortPrice: 390 },
@@ -204,7 +202,12 @@ if (document.getElementById('privilegesButtons')) {
         navigator.clipboard.writeText('fun.invizkasmp.pro');
         const ipEl = document.querySelector('.ip-address');
         const original = ipEl.innerText;
-        ipEl.innerText = '✅ Скопировано!';
+        ipEl.innerText = 'Скопировано';
         setTimeout(() => ipEl.innerText = original, 1500);
     };
+}
+
+// Добавляем класс smp-theme для страницы SMP, если она не имеет других тем
+if (document.querySelector('.server-title') && !document.body.classList.contains('vpn-theme') && !document.body.classList.contains('visual-theme')) {
+    document.body.classList.add('smp-theme');
 }
