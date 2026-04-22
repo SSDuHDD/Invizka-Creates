@@ -51,7 +51,7 @@ body {
     padding: 0 2rem;
 }
 
-/* ===== STARS (только для Minecraft и Visual) ===== */
+/* ===== STARS ===== */
 .stars-container {
     position: fixed;
     top: 0;
@@ -85,7 +85,7 @@ body {
     z-index: 1;
 }
 
-/* ===== FIXED NAVBAR (проектные страницы) ===== */
+/* ===== FIXED NAVBAR ===== */
 .nav-bar {
     position: fixed;
     top: 20px;
@@ -390,7 +390,7 @@ body {
     transform: translateY(1px) translateX(2px);
 }
 
-/* ===== FAQ (исправлено для мобильных) ===== */
+/* ===== FAQ ===== */
 .faq-section {
     margin: 2rem 0 3rem;
 }
@@ -435,7 +435,7 @@ body {
     line-height: 1.7;
 }
 .faq-item.active .faq-answer {
-    max-height: 1200px;  /* большой запас для мобильных */
+    max-height: 1200px;
     padding-bottom: 1.5rem;
 }
 .faq-answer p {
@@ -462,13 +462,8 @@ body {
 .hero-title, .service-title, .server-title {
     font-size: 4rem;
     font-weight: 800;
-    background: linear-gradient(135deg, #ffffff, #c084fc, #a855f7);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
     margin-bottom: 1rem;
     letter-spacing: -0.02em;
-    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 .hero-subtitle, .service-description, .server-description {
     font-size: 1.2rem;
@@ -488,15 +483,9 @@ body {
     font-weight: 700;
     text-align: center;
     margin-bottom: 2.5rem;
-    background: linear-gradient(135deg, #e2e8f0, #c084fc);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 .section-subtitle {
     text-align: center;
-    color: #a78bfa;
     font-size: 1rem;
     margin-bottom: 2.8rem;
     font-style: italic;
@@ -539,11 +528,9 @@ body {
 .feature-card:hover, .advantage-card:hover,
 .feature-card:active, .advantage-card:active {
     transform: translateY(-6px);
-    border-color: rgba(192, 132, 252, 0.5);
 }
 .feature-card i, .advantage-card i {
     font-size: 2.2rem;
-    color: #c084fc;
     margin-bottom: 0.8rem;
     position: relative;
     z-index: 1;
@@ -573,16 +560,10 @@ body {
 .pricing-title, .donate-title {
     font-size: 2.2rem;
     font-weight: 700;
-    background: linear-gradient(135deg, #c084fc, #e2e8f0);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
     margin-bottom: 0.5rem;
     text-align: center;
-    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 .pricing-subtitle, .donate-subtitle {
-    color: #a78bfa;
     font-size: 1rem;
     font-style: italic;
 }
@@ -606,8 +587,6 @@ body {
 .pricing-card:hover,
 .pricing-card:active {
     transform: translateY(-5px);
-    border-color: #c084fc;
-    box-shadow: 0 10px 25px rgba(192, 132, 252, 0.15);
 }
 .pricing-card h3 {
     font-size: 1.5rem;
@@ -616,7 +595,6 @@ body {
 .price {
     font-size: 2.5rem;
     font-weight: 800;
-    color: #c084fc;
     margin: 1rem 0;
 }
 .price-desc {
@@ -628,8 +606,6 @@ body {
 }
 .price-btn {
     background: none;
-    border: 1px solid #c084fc;
-    color: #c084fc;
     padding: 0.6rem 1.8rem;
     border-radius: 40px;
     font-weight: 600;
@@ -639,7 +615,6 @@ body {
     font-size: 0.9rem;
 }
 .price-btn:hover {
-    background: #c084fc20;
     transform: scale(1.02);
 }
 
@@ -656,7 +631,6 @@ body {
     font-size: 1.5rem;
     text-align: center;
     margin-bottom: 1.2rem;
-    color: #c084fc;
 }
 .privilege-btn {
     width: 100%;
@@ -720,7 +694,6 @@ body {
 .privilege-features h4 {
     font-size: 1.2rem;
     margin-bottom: 0.8rem;
-    color: #c084fc;
 }
 .privilege-features ul {
     list-style: none;
@@ -735,13 +708,11 @@ body {
     content: '•';
     position: absolute;
     left: 0;
-    color: #c084fc;
     font-size: 1.2rem;
 }
 .price-tag {
     font-size: 1.8rem;
     font-weight: 800;
-    color: #c084fc;
     margin: 1rem 0 0.8rem 0;
     text-align: center;
     flex-shrink: 0;
@@ -776,11 +747,6 @@ body {
     font-weight: 700;
     text-align: center;
     margin-bottom: 2rem;
-    background: linear-gradient(135deg, #e2e8f0, #c084fc);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 .news-grid {
     display: grid;
@@ -791,7 +757,7 @@ body {
     background: #11131a;
     border-radius: 1.2rem;
     padding: 1.5rem;
-    border-left: 4px solid #c084fc;
+    border-left: 4px solid;
     transition: 0.2s;
 }
 .news-card:hover,
@@ -800,7 +766,6 @@ body {
     background: #151821;
 }
 .news-date {
-    color: #c084fc;
     font-size: 0.8rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
@@ -810,7 +775,7 @@ body {
     color: #e2e8f0;
 }
 
-/* Servers grid (VPN) */
+/* Servers grid */
 .servers-section {
     padding: 4rem 0;
     scroll-margin-top: 100px;
@@ -820,11 +785,6 @@ body {
     font-weight: 700;
     text-align: center;
     margin-bottom: 2rem;
-    background: linear-gradient(135deg, #e2e8f0, #c084fc);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 .servers-grid {
     display: flex;
@@ -844,12 +804,10 @@ body {
 .server-card:hover,
 .server-card:active {
     transform: translateY(-5px);
-    border-color: rgba(192, 132, 252, 0.5);
     background: #151821;
 }
 .server-card i {
     font-size: 2.5rem;
-    color: #c084fc;
     margin-bottom: 0.8rem;
 }
 .server-card h3 {
@@ -874,19 +832,17 @@ body {
     display: inline-block;
     font-size: 1.3rem;
     font-weight: 700;
-    color: #c084fc;
     letter-spacing: 0.5px;
     background: rgba(17, 19, 26, 0.8);
     padding: 0.6rem 1.8rem;
     border-radius: 60px;
-    border: 1px solid rgba(192, 132, 252, 0.3);
+    border: 1px solid;
     cursor: pointer;
     transition: 0.2s;
     font-family: monospace;
 }
 .ip-address:hover {
     background: #1a1d26;
-    border-color: #c084fc;
     transform: scale(1.02);
 }
 .social-title {
@@ -907,7 +863,6 @@ body {
     transition: 0.2s;
 }
 .social-icon:hover {
-    color: #c084fc;
     transform: translateY(-3px);
 }
 
@@ -943,137 +898,143 @@ footer {
     color: #6b7280;
 }
 
-/* ===== SMP GLOW EFFECTS ===== */
-.smp-theme .nav-bar {
-    box-shadow: 0 0 20px rgba(192, 132, 252, 0.3);
-    background: rgba(20, 15, 30, 0.7);
-    backdrop-filter: blur(16px);
-    border: 1px solid rgba(192, 132, 252, 0.4);
+/* ===== SMP THEME (фиолетовая) ===== */
+.smp-theme {
+    background: #0e0a14;
 }
-.smp-theme .feature-card,
-.smp-theme .pricing-card,
-.smp-theme .news-card,
-.smp-theme .server-card {
-    box-shadow: 0 0 15px rgba(192, 132, 252, 0.2);
-    background: rgba(17, 19, 26, 0.8);
-    backdrop-filter: blur(4px);
-    border: 1px solid rgba(192, 132, 252, 0.25);
-}
-.smp-theme .donate-details,
-.smp-theme .privileges-list {
-    background: rgba(17, 19, 26, 0.7);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(192, 132, 252, 0.35);
-    box-shadow: 0 0 20px rgba(192, 132, 252, 0.15);
-}
-.smp-theme .hero-title,
-.smp-theme .section-title,
-.smp-theme .donate-title,
+.smp-theme .hero-title, .smp-theme .server-title,
+.smp-theme .section-title, .smp-theme .donate-title,
 .smp-theme .news-title {
-    text-shadow: 0 0 15px #c084fc, 0 0 30px #a855f7;
-}
-
-/* ===== VPN GLASS EFFECTS (уменьшен glow, все иконки зелёные) ===== */
-.vpn-theme {
-    background: radial-gradient(circle at 20% 30%, #0a1a1a, #050a0a);
-}
-.vpn-theme .content-wrapper {
-    backdrop-filter: blur(2px);
-}
-.vpn-theme .nav-bar {
-    background: rgba(10, 25, 20, 0.5);
-    backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid rgba(34, 197, 94, 0.4);
-    box-shadow: 0 8px 20px rgba(0, 30, 20, 0.2);
-}
-.vpn-theme .feature-card,
-.vpn-theme .pricing-card,
-.vpn-theme .server-card,
-.vpn-theme .news-card {
-    background: rgba(15, 30, 25, 0.4);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(34, 197, 94, 0.3);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15), inset 0 0 0 1px rgba(255, 255, 255, 0.03);
-}
-.vpn-theme .feature-card:hover,
-.vpn-theme .pricing-card:hover,
-.vpn-theme .server-card:hover {
-    background: rgba(25, 45, 40, 0.6);
-    border-color: rgba(34, 197, 94, 0.6);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
-}
-
-/* Все иконки и акценты — зелёные */
-.vpn-theme .feature-card i,
-.vpn-theme .server-card i,
-.vpn-theme .pricing-card .price,
-.vpn-theme .price-btn,
-.vpn-theme .card-btn,
-.vpn-theme .nav-link:hover,
-.vpn-theme .telegram-btn,
-.vpn-theme .faq-question i:first-child,
-.vpn-theme .faq-arrow,
-.vpn-theme .ip-address,
-.vpn-theme .social-icon:hover,
-.vpn-theme .news-date,
-.vpn-theme .privilege-features h4,
-.vpn-theme .privilege-features li::before,
-.vpn-theme .privileges-list h3,
-.vpn-theme .donate-title,
-.vpn-theme .pricing-title,
-.vpn-theme .servers-title,
-.vpn-theme .section-title {
-    color: #22c55e !important;
-}
-
-.vpn-theme .service-title,
-.vpn-theme .pricing-title,
-.vpn-theme .servers-title,
-.vpn-theme .section-title {
-    background: linear-gradient(135deg, #ffffff, #22c55e, #16a34a);
+    background: linear-gradient(135deg, #ffffff, #c084fc, #a855f7);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    text-shadow: 0 0 10px rgba(34, 197, 94, 0.3);
+    text-shadow: 0 0 15px #c084fc;
+}
+.smp-theme .feature-card i, .smp-theme .advantage-card i,
+.smp-theme .server-card i, .smp-theme .price,
+.smp-theme .price-btn, .smp-theme .card-btn,
+.smp-theme .nav-link:hover, .smp-theme .faq-question i:first-child,
+.smp-theme .faq-arrow, .smp-theme .ip-address,
+.smp-theme .social-icon:hover, .smp-theme .news-date,
+.smp-theme .privilege-features h4, .smp-theme .privilege-features li::before,
+.smp-theme .privileges-list h3, .smp-theme .pricing-title {
+    color: #c084fc !important;
+}
+.smp-theme .price-btn, .smp-theme .card-btn {
+    border-color: #c084fc;
+}
+.smp-theme .price-btn:hover, .smp-theme .card-btn:hover {
+    background: rgba(192, 132, 252, 0.15);
+}
+.smp-theme .feature-card::before, .smp-theme .advantage-card::before {
+    background: linear-gradient(to top, rgba(192, 132, 252, 0.3), transparent);
+}
+.smp-theme .feature-card:hover, .smp-theme .advantage-card:hover {
+    border-color: rgba(192, 132, 252, 0.6);
+}
+.smp-theme .pricing-card:hover {
+    border-color: #c084fc;
+    box-shadow: 0 10px 25px rgba(192, 132, 252, 0.2);
+}
+.smp-theme .nav-bar {
+    background: rgba(20, 15, 30, 0.7);
+    border-color: rgba(192, 132, 252, 0.5);
+    box-shadow: 0 0 20px rgba(192, 132, 252, 0.2);
+}
+.smp-theme .nav-link:hover {
+    background: rgba(192, 132, 252, 0.15);
+}
+.smp-theme .news-card {
+    border-left-color: #c084fc;
+}
+.smp-theme .ip-address {
+    border-color: #c084fc;
+}
+.smp-theme ::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #c084fc, #a855f7);
+}
+.smp-theme * {
+    scrollbar-color: #c084fc #11131a;
 }
 
-.vpn-theme .price-btn,
-.vpn-theme .card-btn {
-    border-color: #22c55e;
+/* ===== VPN THEME (мягкая зелёная) ===== */
+.vpn-theme {
+    background: #0a1210;
 }
-.vpn-theme .price-btn:hover,
-.vpn-theme .card-btn:hover {
-    background: rgba(34, 197, 94, 0.15);
+.vpn-theme .hero-title, .vpn-theme .service-title,
+.vpn-theme .section-title, .vpn-theme .pricing-title,
+.vpn-theme .servers-title {
+    background: linear-gradient(135deg, #e0f2e0, #6ee7b7, #34d399);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 10px rgba(52, 211, 153, 0.3);
 }
-.vpn-theme .feature-card::before,
-.vpn-theme .advantage-card::before {
-    background: linear-gradient(to top, rgba(34, 197, 94, 0.15), transparent);
+.vpn-theme .feature-card i, .vpn-theme .server-card i,
+.vpn-theme .price, .vpn-theme .price-btn,
+.vpn-theme .card-btn, .vpn-theme .nav-link:hover,
+.vpn-theme .telegram-btn, .vpn-theme .faq-question i:first-child,
+.vpn-theme .faq-arrow, .vpn-theme .ip-address,
+.vpn-theme .social-icon:hover, .vpn-theme .news-date,
+.vpn-theme .privilege-features h4, .vpn-theme .privilege-features li::before,
+.vpn-theme .privileges-list h3 {
+    color: #6ee7b7 !important;
+}
+.vpn-theme .price-btn, .vpn-theme .card-btn {
+    border-color: #6ee7b7;
+}
+.vpn-theme .price-btn:hover, .vpn-theme .card-btn:hover {
+    background: rgba(110, 231, 183, 0.1);
+}
+.vpn-theme .feature-card::before, .vpn-theme .advantage-card::before {
+    background: linear-gradient(to top, rgba(52, 211, 153, 0.2), transparent);
+}
+.vpn-theme .feature-card:hover, .vpn-theme .advantage-card:hover {
+    border-color: rgba(110, 231, 183, 0.5);
+}
+.vpn-theme .pricing-card:hover, .vpn-theme .server-card:hover {
+    border-color: #6ee7b7;
+    box-shadow: 0 8px 20px rgba(52, 211, 153, 0.1);
+}
+.vpn-theme .nav-bar {
+    background: rgba(10, 30, 25, 0.6);
+    backdrop-filter: blur(16px);
+    border-color: rgba(110, 231, 183, 0.35);
+    box-shadow: 0 4px 20px rgba(0, 30, 20, 0.2);
 }
 .vpn-theme .nav-link:hover {
-    background: rgba(34, 197, 94, 0.15);
+    background: rgba(110, 231, 183, 0.1);
+}
+.vpn-theme .feature-card, .vpn-theme .pricing-card,
+.vpn-theme .server-card, .vpn-theme .news-card {
+    background: rgba(20, 40, 35, 0.5);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(110, 231, 183, 0.2);
+}
+.vpn-theme .news-card {
+    border-left-color: #6ee7b7;
+}
+.vpn-theme .ip-address {
+    border-color: #6ee7b7;
 }
 .vpn-theme .telegram-btn {
-    background: rgba(6, 78, 59, 0.6);
-    border: 1px solid #22c55e;
+    background: rgba(6, 78, 59, 0.5);
+    border: 1px solid #6ee7b7;
 }
 .vpn-theme .telegram-btn:hover {
-    background: rgba(6, 95, 70, 0.8);
+    background: rgba(6, 95, 70, 0.7);
 }
-
-/* Зелёный скроллбар */
 .vpn-theme ::-webkit-scrollbar-thumb {
-    background: linear-gradient(135deg, #22c55e, #16a34a);
-}
-.vpn-theme ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(135deg, #4ade80, #22c55e);
+    background: linear-gradient(135deg, #34d399, #059669);
 }
 .vpn-theme * {
-    scrollbar-color: #22c55e #11131a;
+    scrollbar-color: #34d399 #0a1210;
 }
 
-/* ===== VISUAL MOD THEME ===== */
+/* ===== VISUAL THEME (синяя) ===== */
 .visual-theme {
-    background-color: #0a0c10;
+    background: #0a0e14;
 }
 .visual-bg {
     position: fixed;
@@ -1085,7 +1046,7 @@ footer {
     background-image: url('https://p4.wallpaperbetter.com/wallpaper/539/985/258/minecraft-shaders-cave-hd-wallpaper-preview.jpg');
     background-size: cover;
     background-position: center;
-    filter: blur(6px) brightness(0.3);
+    filter: blur(6px) brightness(0.25);
     pointer-events: none;
     mask-image: 
         radial-gradient(circle at 20% 30%, black 0%, transparent 50%),
@@ -1104,11 +1065,54 @@ footer {
 }
 .visual-theme .hero-title,
 .visual-theme .section-title,
-.visual-theme .pricing-title,
-.visual-theme .feature-card,
-.visual-theme .advantage-card,
+.visual-theme .pricing-title {
+    background: linear-gradient(135deg, #ffffff, #60a5fa, #3b82f6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+}
+.visual-theme .feature-card i, .visual-theme .advantage-card i,
+.visual-theme .price, .visual-theme .price-btn,
+.visual-theme .card-btn, .visual-theme .nav-link:hover,
+.visual-theme .faq-question i:first-child, .visual-theme .faq-arrow {
+    color: #60a5fa !important;
+}
+.visual-theme .price-btn, .visual-theme .card-btn {
+    border-color: #60a5fa;
+}
+.visual-theme .price-btn:hover, .visual-theme .card-btn:hover {
+    background: rgba(96, 165, 250, 0.15);
+}
+.visual-theme .feature-card::before, .visual-theme .advantage-card::before {
+    background: linear-gradient(to top, rgba(59, 130, 246, 0.25), transparent);
+}
+.visual-theme .feature-card:hover, .visual-theme .advantage-card:hover {
+    border-color: rgba(96, 165, 250, 0.6);
+}
+.visual-theme .pricing-card:hover {
+    border-color: #60a5fa;
+    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.2);
+}
+.visual-theme .nav-bar {
+    background: rgba(15, 25, 40, 0.6);
+    backdrop-filter: blur(16px);
+    border-color: rgba(96, 165, 250, 0.4);
+}
+.visual-theme .nav-link:hover {
+    background: rgba(96, 165, 250, 0.15);
+}
+.visual-theme .feature-card, .visual-theme .advantage-card,
 .visual-theme .pricing-card {
-    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    background: rgba(20, 30, 45, 0.5);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(96, 165, 250, 0.25);
+}
+.visual-theme ::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+}
+.visual-theme * {
+    scrollbar-color: #3b82f6 #0a0e14;
 }
 
 /* ===== MEDIA QUERIES ===== */
@@ -1210,7 +1214,7 @@ footer {
         text-overflow: ellipsis;
     }
     .faq-item.active .faq-answer {
-        max-height: 1500px; /* ещё больше запас для очень узких экранов */
+        max-height: 1500px;
     }
 }
 
