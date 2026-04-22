@@ -202,12 +202,7 @@ if (document.getElementById('privilegesButtons')) {
         navigator.clipboard.writeText('fun.invizkasmp.pro');
         const ipEl = document.querySelector('.ip-address');
         const original = ipEl.innerText;
-        ipEl.innerText = 'Скопировано';
+        ipEl.innerText = '✅ Скопировано!';
         setTimeout(() => ipEl.innerText = original, 1500);
     };
-}
-
-// Добавляем класс smp-theme для страницы SMP, если она не имеет других тем
-if (document.querySelector('.server-title') && !document.body.classList.contains('vpn-theme') && !document.body.classList.contains('visual-theme')) {
-    document.body.classList.add('smp-theme');
 }
